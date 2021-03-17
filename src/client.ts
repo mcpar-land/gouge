@@ -8,9 +8,13 @@ import chalk from 'chalk'
 import indentString from 'indent-string'
 
 export type GougeClientOptions = {
+	/** Your Discord application's *Public Key* */
 	key: string
+	/** Your Discord application's *Client Secret* */
 	secret: string
+	/** Your Discord bot's *Token* */
 	token: string
+	/** Your Discord application's *Client ID* */
 	id: string
 	/** By setting this variable, you put the Gouge client into ***TESTING MODE***.
 	 * All global commands will instead become guild-only commands for this
@@ -19,21 +23,34 @@ export type GougeClientOptions = {
 	 */
 	testGuildId?: string
 }
-
+/**
+ * @class GougeClient
+ * This is the core client.
+ */
 export class GougeClient {
 	private app: Express.Application
+	/** Your Discord application's *Public Key* */
 	key: string
+	/** Your Discord application's *Client Secret* */
 	secret: string
+	/** Your Discord bot's *Token* */
 	token: string
+	/** Your Discord application's *Client ID* */
 	id: string
 
 	private testGuildId?: string
 	private commandsLoaded: boolean = false
 
+	/** A map of all successfully registered global commands.
+	 * This is populated by [[GougeClient.add]]
+	 */
 	commands: {
 		[id: string]: Command<any, any>
 	}
 
+	/** Nesting maps of all successfully registered guild-specific commands.
+	 * This is populated by [[GougeClient.addGuild]]
+	 */
 	guildCommands: {
 		[guildId: string]: {
 			[id: string]: Command<any, any>
@@ -222,6 +239,13 @@ export class GougeClient {
 		}
 	}
 
+	/** Make a manual call to the Discord API.
+	 * @param extension A URL fragment. Automatically prefixed by
+	 * `https://discord.com/api/v8`.
+	 *
+	 * For example, passing `users/@me` or `/users/@me` will map to
+	 * `https://discord.com/api/v8/users/@me`
+	 */
 	async api(
 		extension: string,
 		method: 'GET' | 'POST' | 'DELETE' | 'PATCH' = 'GET',

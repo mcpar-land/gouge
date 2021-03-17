@@ -9,11 +9,15 @@ export type CommandHandler<T extends CommandOption<any>[]> = (
 	args: ConvertOptionArrayToInteractionArgArray<T>
 ) => Promise<void>
 
-type EditResponse = (edit: Response) => Promise<void>
-type DeleteResponse = () => Promise<void>
-type FollowupResponse = (content: Response) => Promise<[EditFollowupResponse]>
-type EditFollowupResponse = (content: Response) => Promise<void>
+export type EditResponse = (edit: Response) => Promise<void>
+export type DeleteResponse = () => Promise<void>
+export type FollowupResponse = (
+	content: Response
+) => Promise<[EditFollowupResponse]>
+export type EditFollowupResponse = (content: Response) => Promise<void>
 
 export type ResponseFunction = (
 	response: string | Response
-) => Promise<[EditResponse, DeleteResponse, FollowupResponse]>
+) => Promise<
+	[(edit: Response) => Promise<void>, DeleteResponse, FollowupResponse]
+>

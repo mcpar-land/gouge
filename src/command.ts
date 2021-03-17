@@ -26,6 +26,7 @@ import { Response } from './types/Response'
 
 export class Command<N extends string, T extends CommandOption<any>[]>
 	implements CommandOptionSubCommand<N, T> {
+	/** @internal */
 	type: CommandOptionType.SUB_COMMAND = CommandOptionType.SUB_COMMAND
 	name: N
 	description: string
