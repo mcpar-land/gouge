@@ -1,10 +1,10 @@
-<center>
+<p align="center">
 
 <h1>Gouge</h1>
 
-<a href="https://mcpar-land.github.io/gouge/">Docs</a> - <a href="/examples">Examples</a>
+<a href="https://mcpar-land.github.io/gouge/">Docs</a> - <a href="/test">Examples</a>
 
-</center>
+</p>
 
 Super-ergonomic discord bot framework, using the new Slash Commands API.
 
