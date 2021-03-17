@@ -1,5 +1,9 @@
 root = true
 
-[*.{md,ts}]
+[*.{ts,js}]
 indent_style = tab
+indent_size = 2
+
+[*.md]
+indent_style = space
 indent_size = 2

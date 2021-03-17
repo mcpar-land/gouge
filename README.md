@@ -12,24 +12,24 @@ Super-ergonomic discord bot framework, using the new Slash Commands API.
 import { GougeClient, command } from 'gouge'
 
 const client = new GougeClient({
-	id: process.env.CLIENT_ID,
-	key: process.env.PUBLIC_KEY,
-	secret: process.env.CLIENT_SECRET,
-	token: process.env.BOT_TOKEN,
+  id: process.env.CLIENT_ID,
+  key: process.env.PUBLIC_KEY,
+  secret: process.env.CLIENT_SECRET,
+  token: process.env.BOT_TOKEN,
 })
 
 client.add(
-	command('bagel', 'Order a number of bagels')
-		.string('kind', 'The kind of bagel to order', true, [
-			'Plain',
-			'Blueberry',
-			'Poppy',
-			'Cinnamon',
-		])
-		.integer('amount', 'The amount of bagels to order', true)
-		.handler(async (client, respond, [kind, amount]) => {
-			await respond('You ordered ' + amount + ' ' + kind + ' bagels.')
-		})
+  command('bagel', 'Order a number of bagels')
+    .string('kind', 'The kind of bagel to order', true, [
+      'Plain',
+      'Blueberry',
+      'Poppy',
+      'Cinnamon',
+    ])
+    .integer('amount', 'The amount of bagels to order', true)
+    .handler(async (client, respond, [kind, amount]) => {
+      await respond('You ordered ' + amount + ' ' + kind + ' bagels.')
+    })
 )
 ```
 
