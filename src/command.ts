@@ -184,6 +184,7 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return names
 	}
 
+	/** @internal */
 	convertInteractionToArgs(interaction: any): any[] {
 		let names = this.argNames()
 		let args = new Array(names.length).fill(undefined)

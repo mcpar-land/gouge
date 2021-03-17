@@ -2,12 +2,14 @@
 	"name": "gouge",
 	"version": "0.0.1",
 	"main": "build/index.js",
+	"repository": "https://github.com/mcpar-land/gouge",
 	"license": "MIT",
 	"scripts": {
 		"dev": "nodemon --exec node --inspect -r ts-node/register test/test-client.ts",
 		"test": "jest",
 		"build": "tsc",
-		"docs": "typedoc"
+		"docs": "typedoc",
+		"docs-watch": "typedoc --watch"
 	},
 	"devDependencies": {
 		"@types/babel__core": "^7.1.12",

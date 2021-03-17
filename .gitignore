@@ -1,6 +1,4 @@
 node_modules
 .env*
-.vscode/*
-!.vscode/launch.json
 build
 docs

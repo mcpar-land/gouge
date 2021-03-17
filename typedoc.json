@@ -3,5 +3,6 @@
 	"out": "docs",
 	"excludePrivate": true,
 	"excludeInternal": true,
-	"exclude": "**/*.spec.ts"
+	"exclude": "**/*.spec.ts",
+	"theme": "minimal"
 }
