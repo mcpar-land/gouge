@@ -67,6 +67,7 @@ export interface CommandOptionInteger<
 	choices?: OptionChoice<number>[]
 }
 
+/** @internal */
 export interface CommandOptionBoolean<
 	N extends string,
 	R extends true | false | undefined = undefined
