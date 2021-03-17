@@ -1,5 +1,5 @@
+<h1 align="center">Gouge</h1>
 <p align="center">
-<h1>Gouge</h1>
 <a href="https://mcpar-land.github.io/gouge/">Docs</a> - <a href="/test">Examples</a>
 </p>
 
