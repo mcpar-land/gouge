@@ -9,6 +9,7 @@ import { IChannel, IMember, IRole, IUser } from './Discord'
 
 export type Snowflake = string
 
+/** @internal */
 export interface InteractionRaw<D> {
 	id: Snowflake
 	type: InteractionType
@@ -21,26 +22,31 @@ export interface InteractionRaw<D> {
 	version: 1
 }
 
+/* @internal */
 export enum InteractionType {
 	Ping = 1,
 	ApplicationCommand = 2,
 }
 
+/** @internal */
 export interface InteractionData<D> {
 	id: Snowflake
 	name: string
 	options: D
 }
 
+/** @internal */
 export interface InteractionDataOption<N extends string> {
 	name: N
 }
 
+/** @internal */
 export interface InteractionDataOptionValue<N extends string, V>
 	extends InteractionDataOption<N> {
 	value: V
 }
 
+/** @internal */
 export interface InteractionDataOptionOptions<
 	N extends string,
 	O extends (
@@ -85,6 +91,7 @@ type ConvertOptionToInteractionArg<
 		: TYPE_MAP[T['type']] | undefined
 	: unknown
 
+/** @internal */
 export type ConvertOptionArrayToInteractionArgArray<
 	A extends CommandOption<any>[]
 > = {

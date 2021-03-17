@@ -117,6 +117,12 @@ export class GougeClient {
 		})
 	}
 
+	/**
+	 * Start the gouge client listening for incoming webhooks.
+	 * @param port Port to listen on.
+	 * @param callback Optional callback tha runs when the server sucessfully
+	 * starts listening.
+	 */
 	start(port: number | string, callback?: () => void) {
 		this.app.listen(port, () => {
 			if (this.testGuildId) {
