@@ -59,7 +59,7 @@ client.with(
 )
 
 client.start(process.env.PORT || 'NONE', async () => {
-	console.log('Client started listening')
+	console.log('Test client started listening')
 	// await client.deleteGuildAll(process.env.TEST_GUILD_ID || 'none')
 	// console.log('testing only: deleted all guild commands')
 	// await client.deleteGlobalAll()

@@ -92,12 +92,7 @@ export class GougeClient {
 			if (req.body.type == 1) {
 				return res.status(200).send({ type: 1 })
 			}
-
-			const token = req.body.token
 			const id = req.body.data.id
-
-			console.log(JSON.stringify(req.body, null, 2))
-			console.log(`/interactions/${req.body.id}/${token}/callback`)
 			// find the command
 			let command: Command<any, any> | undefined =
 				this.commands[id] ||
