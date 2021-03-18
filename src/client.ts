@@ -114,6 +114,14 @@ export class GougeClient {
 		})
 	}
 
+	with<N extends string, T extends CommandOption<any>[]>(
+		command: Command<N, T>
+	): GougeClient {
+		// this.registerCommand((command as unknown) as Command<any, any>)
+		this.pendingCommands.push(command)
+		return this
+	}
+
 	/**
 	 * Start the gouge client listening for incoming webhooks.
 	 * @param port Port to listen on.
@@ -204,14 +212,6 @@ export class GougeClient {
 		let guildCmds = await this.getRegisteredGuildCommands(guildId)
 		let ids = Object.keys(guildCmds)
 		await Promise.all(ids.map((id) => this.deleteGuild(id, guildId)))
-	}
-
-	with<N extends string, T extends CommandOption<any>[]>(
-		command: Command<N, T>
-	): GougeClient {
-		// this.registerCommand((command as unknown) as Command<any, any>)
-		this.pendingCommands.push(command)
-		return this
 	}
 
 	private async registerPendingCommands() {
