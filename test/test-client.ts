@@ -12,13 +12,7 @@ const client = new GougeClient({
 	testGuildId: process.env.TEST_GUILD_ID,
 })
 
-// client.add(
-// 	command('foo', 'foo cmd').handler(async (client, respond, []) => {
-// 		await respond('bar')
-// 	})
-// )
-
-client.add(
+client.with(
 	command('blep', 'Send a random adorable animal photo')
 		.string('animal', 'The type of animal', true, [
 			{ name: 'Dog', value: 'animal_dog' },
@@ -44,7 +38,7 @@ client.add(
 			})
 		})
 )
-client.add(
+client.with(
 	command('specials', 'Get arguments of special types')
 		.user('special_user', 'Get a user', true)
 		.channel('special_channel', 'Get a channel', true)

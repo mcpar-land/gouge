@@ -18,7 +18,7 @@ const client = new GougeClient({
   token: process.env.BOT_TOKEN,
 })
 
-client.add(
+client.with(
   command('bagel', 'Order a number of bagels')
     .string('kind', 'The kind of bagel to order', true, [
       'Plain',

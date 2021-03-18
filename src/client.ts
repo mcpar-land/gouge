@@ -41,16 +41,12 @@ export class GougeClient {
 	private testGuildId?: string
 	private pendingCommands: Command<any, any>[]
 
-	/** A map of all successfully registered global commands.
-	 * This is populated by [[GougeClient.add]]
-	 */
+	/** A map of all successfully registered global commands. */
 	commands: {
 		[id: string]: Command<any, any>
 	}
 
-	/** Nesting maps of all successfully registered guild-specific commands.
-	 * This is populated by [[GougeClient.addGuild]]
-	 */
+	/** Nesting maps of all successfully registered guild-specific commands.*/
 	guildCommands: {
 		[guildId: string]: {
 			[id: string]: Command<any, any>
@@ -139,7 +135,7 @@ export class GougeClient {
 			)
 	}
 
-	async getExistingCommandsFromServer(): Promise<{
+	private async getRegisteredCommands(): Promise<{
 		[id: string]: Command<any, any>
 	}> {
 		return this.rawCommands(
@@ -149,7 +145,7 @@ export class GougeClient {
 		)
 	}
 
-	async getExistingGuildCommandsFromServer(
+	private async getRegisteredGuildCommands(
 		guildId: string
 	): Promise<{ [id: string]: Command<any, any> }> {
 		return this.rawCommands(
@@ -198,23 +194,24 @@ export class GougeClient {
 		}
 	}
 
-	async deleteGlobalAll() {
-		let cmds = await this.getExistingCommandsFromServer()
+	async deleteAllGlobalCommands() {
+		let cmds = await this.getRegisteredCommands()
 		let ids = Object.keys(cmds)
 		await Promise.all(ids.map((id) => this.delete(id)))
 	}
 
-	async deleteGuildAll(guildId: string) {
-		let guildCmds = await this.getExistingGuildCommandsFromServer(guildId)
+	async deleteAllGuildCommands(guildId: string) {
+		let guildCmds = await this.getRegisteredGuildCommands(guildId)
 		let ids = Object.keys(guildCmds)
 		await Promise.all(ids.map((id) => this.deleteGuild(id, guildId)))
 	}
 
-	async add<N extends string, T extends CommandOption<any>[]>(
+	with<N extends string, T extends CommandOption<any>[]>(
 		command: Command<N, T>
-	) {
+	): GougeClient {
 		// this.registerCommand((command as unknown) as Command<any, any>)
 		this.pendingCommands.push(command)
+		return this
 	}
 
 	private async registerPendingCommands() {
@@ -261,7 +258,7 @@ export class GougeClient {
 	async prune() {
 		const loadedCommandIds = Object.keys(this.commands)
 		const pruneTargetIds = Object.entries(
-			await this.getExistingCommandsFromServer()
+			await this.getRegisteredCommands()
 		).filter(([key, val]) => !loadedCommandIds.includes(key))
 		const prune = async (id: string, guild?: string) => {
 			await this.api(
