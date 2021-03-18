@@ -5,7 +5,7 @@
 	"repository": "https://github.com/mcpar-land/gouge",
 	"license": "MIT",
 	"scripts": {
-		"dev": "nodemon --exec node --inspect -r ts-node/register test/test-client.ts",
+		"dev": "nodemon --exec node -r ts-node/register test/test-client.ts",
 		"test": "jest",
 		"build": "tsc",
 		"docs": "typedoc",

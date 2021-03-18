@@ -39,7 +39,7 @@ export class GougeClient {
 	id: string
 
 	private testGuildId?: string
-	private commandsLoaded: boolean = false
+	private pendingCommands: Command<any, any>[]
 
 	/** A map of all successfully registered global commands.
 	 * This is populated by [[GougeClient.add]]
@@ -66,6 +66,7 @@ export class GougeClient {
 		this.app = Express.default()
 		this.commands = {}
 		this.guildCommands = {}
+		this.pendingCommands = []
 
 		this.app.use(
 			Express.json({
@@ -124,14 +125,18 @@ export class GougeClient {
 	 * starts listening.
 	 */
 	start(port: number | string, callback?: () => void) {
-		this.app.listen(port, () => {
-			if (this.testGuildId) {
-				console.log(
-					chalk.yellow('Starting in test mode with guild', this.testGuildId)
-				)
-			}
-			if (callback) callback()
-		})
+		this.registerPendingCommands()
+			.then(async () => await this.prune())
+			.then(() =>
+				this.app.listen(port, () => {
+					if (this.testGuildId) {
+						console.log(
+							chalk.yellow('Starting in test mode with guild', this.testGuildId)
+						)
+					}
+					if (callback) callback()
+				})
+			)
 	}
 
 	async getExistingCommandsFromServer(): Promise<{
@@ -208,14 +213,17 @@ export class GougeClient {
 	async add<N extends string, T extends CommandOption<any>[]>(
 		command: Command<N, T>
 	) {
-		this.addSingle((command as unknown) as Command<any, any>)
+		// this.registerCommand((command as unknown) as Command<any, any>)
+		this.pendingCommands.push(command)
 	}
 
-	async addGuild(guildId: string, ...commands: Command<any, any>[]) {
-		await Promise.all(commands.map((c) => this.addSingle(c, guildId)))
+	private async registerPendingCommands() {
+		await Promise.all(
+			this.pendingCommands.map((cmd) => this.registerCommand(cmd))
+		)
 	}
 
-	private async addSingle(command: Command<any, any>, guildId?: string) {
+	async registerCommand(command: Command<any, any>, guildId?: string) {
 		let endpoint: string
 		let isGlobal: boolean = false
 		if (!guildId) {
@@ -229,9 +237,6 @@ export class GougeClient {
 		}
 		try {
 			let res = await this.api(endpoint, 'POST', command.serialize())
-			console.log(
-				`Registered${isGlobal ? ' global ' : ' '}command: ${command.name}`
-			)
 			command.id = res.id
 			if (!guildId) {
 				this.commands[command.id] = command
@@ -239,10 +244,50 @@ export class GougeClient {
 				if (!this.guildCommands[guildId]) this.guildCommands[guildId] = {}
 				this.guildCommands[guildId][command.id] = command
 			}
+			console.log(
+				`Registered${isGlobal ? ' global ' : ' '}command: ${chalk.magenta(
+					command.name
+				)} ${chalk.yellow(res.id)}`
+			)
 		} catch (err) {
 			console.error('Error registering command', command.name)
 			console.error(err.message)
 		}
+	}
+
+	/**
+	 * Prune global commands that don't have a handler.
+	 */
+	async prune() {
+		const loadedCommandIds = Object.keys(this.commands)
+		const pruneTargetIds = Object.entries(
+			await this.getExistingCommandsFromServer()
+		).filter(([key, val]) => !loadedCommandIds.includes(key))
+		const prune = async (id: string, guild?: string) => {
+			await this.api(
+				!!guild
+					? `/applications/${this.id}/guilds/${guild}/commands/${id}`
+					: `/applications/${this.id}/commands/${id}`,
+				'DELETE'
+			)
+		}
+		await Promise.all(
+			pruneTargetIds.map(([id, cmd]) =>
+				(async () => {
+					try {
+						await prune(id, this.testGuildId)
+						console.log(
+							'Pruned unhandled global command',
+							chalk.magenta(cmd.name),
+							chalk.yellow(id)
+						)
+					} catch (err) {
+						console.error(chalk.red('Error deleting command'), chalk.red(id))
+						console.error(chalk.red(err.message))
+					}
+				})()
+			)
+		)
 	}
 
 	/** Make a manual call to the Discord API.

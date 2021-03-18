@@ -1,7 +1,15 @@
 import { GougeClient } from './client'
 import { CommandOption } from './command-types'
-import { ConvertOptionArrayToInteractionArgArray } from './types/Interaction'
+import { ConvertOptionArrayToInteractionArgArray, InteractionRaw } from './types/Interaction'
 import { Response } from './types/Response'
+
+export type RawHandler = (
+	client: GougeClient,
+	respond: ResponseFunction,
+	interaction: InteractionRaw<{
+		
+	}>
+) => Promise<void>
 
 /**
  * Handler callback, for use in [[Command.handler]]
@@ -27,9 +35,6 @@ import { Response } from './types/Response'
 export type CommandHandler<T extends CommandOption<any>[]> = (
 	client: GougeClient,
 	respond: ResponseFunction,
-	/**
-	 * Hey, grat job
-	 */
 	args: ConvertOptionArrayToInteractionArgArray<T>
 ) => Promise<void>
 

@@ -12,6 +12,12 @@ const client = new GougeClient({
 	testGuildId: process.env.TEST_GUILD_ID,
 })
 
+// client.add(
+// 	command('foo', 'foo cmd').handler(async (client, respond, []) => {
+// 		await respond('bar')
+// 	})
+// )
+
 client.add(
 	command('blep', 'Send a random adorable animal photo')
 		.string('animal', 'The type of animal', true, [
