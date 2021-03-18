@@ -55,5 +55,5 @@ For now, it can respond to inputs.
 
 - [ ] Finish documenting all systems
 - [ ] Write comprehensive unit tests
-- [ ] Automatic pruning of global commands that aren't handled any more.
+- [x] Automatic pruning of global commands that aren't handled any more.
 - [ ] Some strategy for managing guild commands between bot reboots.
