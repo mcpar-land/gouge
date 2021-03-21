@@ -5,6 +5,10 @@
 <a href="https://github.com/mcpar-land/gouge/wiki">Wiki</a>
 </p>
 
+<p align="center">
+  <img alt="npm" src="https://img.shields.io/npm/dy/gouge"> <img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/mcpar-land/gouge">
+</p>
+
 Super-ergonomic discord bot framework, using the new Slash Commands API.
 
 - 100% Webhook-driven
