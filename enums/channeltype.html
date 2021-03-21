@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InteractionType | gouge</title>
+	<title>ChannelType | gouge</title>
 	<meta name="description" content="Documentation for gouge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,16 +55,24 @@
 					<a href="../modules.html">gouge</a>
 				</li>
 				<li>
-					<a href="interactiontype.html">InteractionType</a>
+					<a href="channeltype.html">ChannelType</a>
 				</li>
 			</ul>
-			<h1>Enumeration InteractionType</h1>
+			<h1>Enumeration ChannelType</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Representation of the Discord API
+						<a href="https://discord.com/developers/docs/resources/channel#channel-object-channel-types">Channel Types</a></p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -72,8 +80,13 @@
 						<section class="tsd-index-section ">
 							<h3>Enumeration members</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="interactiontype.html#applicationcommand" class="tsd-kind-icon">Application<wbr>Command</a></li>
-								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="interactiontype.html#ping" class="tsd-kind-icon">Ping</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#dm" class="tsd-kind-icon">DM</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#group_dm" class="tsd-kind-icon">GROUP_<wbr>DM</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#guild_category" class="tsd-kind-icon">GUILD_<wbr>CATEGORY</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#guild_news" class="tsd-kind-icon">GUILD_<wbr>NEWS</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#guild_store" class="tsd-kind-icon">GUILD_<wbr>STORE</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#guild_text" class="tsd-kind-icon">GUILD_<wbr>TEXT</a></li>
+								<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="channeltype.html#guild_voice" class="tsd-kind-icon">GUILD_<wbr>VOICE</a></li>
 							</ul>
 						</section>
 					</div>
@@ -82,24 +95,109 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Enumeration members</h2>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="applicationcommand" class="tsd-anchor"></a>
-					<h3>Application<wbr>Command</h3>
-					<div class="tsd-signature tsd-kind-icon">Application<wbr>Command<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<a name="dm" class="tsd-anchor"></a>
+					<h3>DM</h3>
+					<div class="tsd-signature tsd-kind-icon">DM<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Interaction.ts#L28">types/Interaction.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L84">types/Discord.ts:84</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a direct message between users</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-					<a name="ping" class="tsd-anchor"></a>
-					<h3>Ping</h3>
-					<div class="tsd-signature tsd-kind-icon">Ping<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 1</span></div>
+					<a name="group_dm" class="tsd-anchor"></a>
+					<h3>GROUP_<wbr>DM</h3>
+					<div class="tsd-signature tsd-kind-icon">GROUP_<wbr>DM<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 3</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Interaction.ts#L27">types/Interaction.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L88">types/Discord.ts:88</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a direct message between multiple users</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="guild_category" class="tsd-anchor"></a>
+					<h3>GUILD_<wbr>CATEGORY</h3>
+					<div class="tsd-signature tsd-kind-icon">GUILD_<wbr>CATEGORY<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 4</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L90">types/Discord.ts:90</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>an organizational category that contains up to 50 channels</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="guild_news" class="tsd-anchor"></a>
+					<h3>GUILD_<wbr>NEWS</h3>
+					<div class="tsd-signature tsd-kind-icon">GUILD_<wbr>NEWS<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 5</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L92">types/Discord.ts:92</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a channel that users can follow and crosspost into their own server</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="guild_store" class="tsd-anchor"></a>
+					<h3>GUILD_<wbr>STORE</h3>
+					<div class="tsd-signature tsd-kind-icon">GUILD_<wbr>STORE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 6</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L94">types/Discord.ts:94</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a channel in which game developers can sell their game on Discord</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="guild_text" class="tsd-anchor"></a>
+					<h3>GUILD_<wbr>TEXT</h3>
+					<div class="tsd-signature tsd-kind-icon">GUILD_<wbr>TEXT<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 0</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L82">types/Discord.ts:82</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a text channel within a server</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+					<a name="guild_voice" class="tsd-anchor"></a>
+					<h3>GUILD_<wbr>VOICE</h3>
+					<div class="tsd-signature tsd-kind-icon">GUILD_<wbr>VOICE<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> = 2</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/92ff59c/src/types/Discord.ts#L86">types/Discord.ts:86</a></li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>a voice channel within a server</p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -113,24 +211,39 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-enum">
-						<a href="channeltype.html" class="tsd-kind-icon">Channel<wbr>Type</a>
-					</li>
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-enum">
-						<a href="interactiontype.html" class="tsd-kind-icon">Interaction<wbr>Type</a>
+						<a href="channeltype.html" class="tsd-kind-icon">Channel<wbr>Type</a>
 						<ul>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="interactiontype.html#applicationcommand" class="tsd-kind-icon">Application<wbr>Command</a>
+								<a href="channeltype.html#dm" class="tsd-kind-icon">DM</a>
 							</li>
 							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-								<a href="interactiontype.html#ping" class="tsd-kind-icon">Ping</a>
+								<a href="channeltype.html#group_dm" class="tsd-kind-icon">GROUP_<wbr>DM</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="channeltype.html#guild_category" class="tsd-kind-icon">GUILD_<wbr>CATEGORY</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="channeltype.html#guild_news" class="tsd-kind-icon">GUILD_<wbr>NEWS</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="channeltype.html#guild_store" class="tsd-kind-icon">GUILD_<wbr>STORE</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="channeltype.html#guild_text" class="tsd-kind-icon">GUILD_<wbr>TEXT</a>
+							</li>
+							<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+								<a href="channeltype.html#guild_voice" class="tsd-kind-icon">GUILD_<wbr>VOICE</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-enum">
+						<a href="interactiontype.html" class="tsd-kind-icon">Interaction<wbr>Type</a>
+					</li>
 					<li class=" tsd-kind-class tsd-has-type-parameter">
 						<a href="../classes/command.html" class="tsd-kind-icon">Command</a>
 					</li>
