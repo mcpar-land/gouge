@@ -2,9 +2,11 @@
 	"name": "gouge",
 	"version": "0.0.1",
 	"main": "build/index.js",
+	"types": "build.index.d.ts",
 	"repository": "https://github.com/mcpar-land/gouge",
 	"license": "MIT",
 	"scripts": {
+		"prepublish": "tsc",
 		"dev": "nodemon --exec node -r ts-node/register test/test-client.ts",
 		"test": "jest",
 		"build": "tsc",

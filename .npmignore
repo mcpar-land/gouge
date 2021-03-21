@@ -1,0 +1,12 @@
+docs
+test
+**/*.spec.ts
+**/*.spec.js*
+**/*.spec.d.ts*
+.vscode
+.env
+.github
+.editorconfig
+.prettierrc
+jest.config.js
+typedoc.json
