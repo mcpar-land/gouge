@@ -41,6 +41,15 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		this.id = 'UNREGISTERED'
 	}
 
+	/**
+	 * Add a string argument to a command. Adds a `string` to the handler's
+	 * inputs.
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @param choices
+	 * @returns
+	 */
 	string<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -64,6 +73,15 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayString<Nn, T, R>>
 	}
 
+	/**
+	 * Add an integer argument to a command. Adds a `number` to the handler's
+	 * inputs.
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @param choices
+	 * @returns
+	 */
 	integer<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -80,6 +98,14 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayInteger<Nn, T, R>>
 	}
 
+	/**
+	 * Add a boolean argument to a command. Adds a `boolean` to the handler's
+	 * inputs.
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @returns
+	 */
 	boolean<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -94,6 +120,15 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayBoolean<Nn, T, R>>
 	}
 
+	/**
+	 * Add a User argument to a command. Adds an `[[IUser]] | [[IMember]]`
+	 * to the handler's inputs. (`IUser` is returned when the command is used
+	 * in a DM, `IMember` is returned when used in a guild)
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @returns
+	 */
 	user<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -108,6 +143,14 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayUser<Nn, T, R>>
 	}
 
+	/**
+	 * Add a Channel argument to a command. Adds an [[IChannel]] to the handler's
+	 * inputs.
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @returns
+	 */
 	channel<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -122,6 +165,14 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayChannel<Nn, T, R>>
 	}
 
+	/**
+	 * Add a Role argument to a command. Adds an [[IRole]] to the handler's
+	 * inputs.
+	 * @param name
+	 * @param description
+	 * @param required
+	 * @returns
+	 */
 	role<Nn extends string, R extends true | false | undefined>(
 		name: Nn,
 		description: string,
@@ -136,6 +187,12 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return (this as unknown) as Command<N, CommandOptionArrayRole<Nn, T, R>>
 	}
 
+	/**
+	 * Add a subcommand to a command. Not compatible with any other input-adding
+	 * functions.
+	 * @param command
+	 * @returns
+	 */
 	subcommand<Nn extends string, O extends CommandOption<any>[]>(
 		command: Command<Nn, O>
 	): Command<N, CommandOptionArraySubCommand<Nn, O, T>> {
@@ -146,6 +203,14 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		>
 	}
 
+	/**
+	 * Add a subcommand group to a command. Not compatible with any other
+	 * input-adding functions.
+	 * @param name
+	 * @param description
+	 * @param commands
+	 * @returns
+	 */
 	group<Nn extends string, S extends CommandOptionSubCommand<any, any>[]>(
 		name: Nn,
 		description: string,
@@ -163,6 +228,7 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		>
 	}
 
+	/** Write the handler for a command. */
 	handler(handler: CommandHandler<T>): Command<N, T> {
 		this.handlerFxn = handler
 		return this
@@ -184,20 +250,25 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return names
 	}
 
-	/** @internal */
-	convertInteractionToArgs(interaction: any): any[] {
+	/** @internal
+	 *  Recursion should be handled elsewhere. This is NOT recursive.
+	 */
+	resolveOptions(options: any[] | undefined, resolvedValues: any): any[] {
 		let names = this.argNames()
 		let args = new Array(names.length).fill(undefined)
-		for (const arg of interaction.data.options) {
+		if (!options) return args
+		for (const arg of options) {
 			let i = names.indexOf(arg.name)
 			args[i] = arg.value
 			if (arg.type == CommandOptionType.ROLE) {
-				args[i] = interaction.data.resolved.roles[arg.value]
+				args[i] = resolvedValues.roles[arg.value]
 			} else if (arg.type == CommandOptionType.CHANNEL) {
-				args[i] = interaction.data.resolved.channels[arg.value]
+				args[i] = resolvedValues.channels[arg.value]
 			} else if (arg.type == CommandOptionType.USER) {
-				const member = interaction.data.resolved.members[arg.value]
-				const user = interaction.data.resolved.users[arg.value]
+				const member = resolvedValues.members
+					? resolvedValues.members[arg.value]
+					: undefined
+				const user = resolvedValues.users[arg.value]
 				if (member) member.user = user
 				args[i] = member || user
 			}
@@ -205,57 +276,11 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 		return args
 	}
 
-	async doHandle(client: GougeClient, interaction: any): Promise<void> {
-		if (this.handlerFxn) {
-			const respondFxn: ResponseFunction = async (
-				response: string | Response
-			) => {
-				await client.api(
-					`/interactions/${interaction.id}/${interaction.token}/callback`,
-					'POST',
-					{
-						type: 4,
-						data: stringToResponse(response),
-					}
-				)
-				let interactionToken = interaction.token
-				let urlPrefix = `/webhooks/${client.id}/${interactionToken}`
-
-				return [
-					async (edit: string | Response) => {
-						await client.api(
-							`${urlPrefix}/messages/@original`,
-							'PATCH',
-							stringToResponse(edit)
-						)
-					},
-					async () => {
-						await client.api(`${urlPrefix}/messages/@original`, 'DELETE')
-					},
-					async (content: string | Response) => {
-						let fres = await client.api(
-							`${urlPrefix}`,
-							'POST',
-							stringToResponse(content)
-						)
-						let newId = fres.id
-						return [
-							async (edit: string | Response) => {
-								await client.api(
-									`${urlPrefix}/messages/${newId}`,
-									'PATCH',
-									stringToResponse(edit)
-								)
-							},
-						]
-					},
-				]
-			}
-			const args = this.convertInteractionToArgs(interaction)
-			await this.handlerFxn(client, respondFxn, args as any)
-		}
-	}
-
+	/**
+	 * Returns true if a command has the same arguments, name, and description.
+	 * @param command
+	 * @returns
+	 */
 	equal(command: Command<any, any>): boolean {
 		return (
 			this.name == command.name &&
@@ -265,17 +290,18 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	}
 }
 
+/**
+ * Shortcut for
+ * ```ts
+ * new Command('name', 'description');
+ * ```
+ * @param name
+ * @param description
+ * @returns
+ */
 export function command<Nn extends string>(
 	name: Nn,
 	description: string
 ): Command<Nn, []> {
 	return new Command(name, description)
-}
-
-function stringToResponse(inp: string | Response): Response {
-	let _inp = inp
-	if (typeof _inp === 'string') {
-		_inp = { content: _inp }
-	}
-	return _inp
 }

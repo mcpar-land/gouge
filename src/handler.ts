@@ -1,14 +1,15 @@
 import { GougeClient } from './client'
 import { CommandOption } from './command-types'
-import { ConvertOptionArrayToInteractionArgArray, InteractionRaw } from './types/Interaction'
+import {
+	ConvertOptionArrayToInteractionArgArray,
+	InteractionRaw,
+} from './types/Interaction'
 import { Response } from './types/Response'
 
 export type RawHandler = (
 	client: GougeClient,
 	respond: ResponseFunction,
-	interaction: InteractionRaw<{
-		
-	}>
+	interaction: InteractionRaw<{}>
 ) => Promise<void>
 
 /**
@@ -97,3 +98,59 @@ export type EditFollowupResponse = (content: Response) => Promise<void>
 export type ResponseFunction = (
 	response: string | Response
 ) => Promise<[EditResponse, DeleteResponse, FollowupResponse]>
+
+export function responseFunction(
+	client: GougeClient,
+	interaction: any
+): ResponseFunction {
+	return async (response: string | Response) => {
+		await client.api(
+			`/interactions/${interaction.id}/${interaction.token}/callback`,
+			'POST',
+			{
+				type: 4,
+				data: stringToResponse(response),
+			}
+		)
+		let interactionToken = interaction.token
+		let urlPrefix = `/webhooks/${client.id}/${interactionToken}`
+
+		return [
+			async (edit: string | Response) => {
+				await client.api(
+					`${urlPrefix}/messages/@original`,
+					'PATCH',
+					stringToResponse(edit)
+				)
+			},
+			async () => {
+				await client.api(`${urlPrefix}/messages/@original`, 'DELETE')
+			},
+			async (content: string | Response) => {
+				let fres = await client.api(
+					`${urlPrefix}`,
+					'POST',
+					stringToResponse(content)
+				)
+				let newId = fres.id
+				return [
+					async (edit: string | Response) => {
+						await client.api(
+							`${urlPrefix}/messages/${newId}`,
+							'PATCH',
+							stringToResponse(edit)
+						)
+					},
+				]
+			},
+		]
+	}
+}
+
+function stringToResponse(inp: string | Response): Response {
+	let _inp = inp
+	if (typeof _inp === 'string') {
+		_inp = { content: _inp }
+	}
+	return _inp
+}

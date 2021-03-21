@@ -57,6 +57,73 @@ client.with(
 			})
 		})
 )
+client.with(
+	command('subhaver', 'Command with subcommands')
+		.subcommand(
+			command('sub1', 'first subcommand')
+				.string('sub1a', 'sub command 1 argument a')
+				.user('sub1b', 'sub command 1 argument b')
+				.handler(async (client, respond, [a, b]) => {
+					await respond(`**sub1** A: ${a}, B: ${b}`)
+				})
+		)
+		.subcommand(
+			command('sub2', 'second subcommand')
+				.string('sub2a', 'sub command 2 argument a')
+				.user('sub2b', 'sub command 2 argument b')
+				.handler(async (client, respond, [a, b]) => {
+					await respond(`**sub2** A: ${a}, B: ${b}`)
+				})
+		)
+)
+
+client.with(
+	command('bread-groups', 'Various sorts of bread')
+		.group(
+			'bagels',
+			'different kinds of bagels',
+			command('plain', 'A plain bagel')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond, [toasted, creamcheese]) => {
+					await respond('You got a plain bagel!')
+				}),
+			command('poppy', 'A poppy seed bagel')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond) => {
+					await respond('You got a poppy seed bagel!')
+				}),
+			command('blueberry', 'A blueberry bagel')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond) => {
+					await respond('You got a blueberry bagel!')
+				})
+		)
+		.group(
+			'loafs',
+			'Different kinds of loafs',
+			command('white', 'A white bread loaf')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond) => {
+					await respond('You got a white loaf of bread!')
+				}),
+			command('wheat', 'A wheat bread loaf')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond) => {
+					await respond('You got a wheat loaf of bread!')
+				}),
+			command('sourdough', 'A sourdough bread loaf')
+				.boolean('toasted', 'is this toasted or no')
+				.boolean('creamcheese', 'does this have cream cheese')
+				.handler(async (client, respond) => {
+					await respond('You got a loaf of sourdough bread!')
+				})
+		)
+)
 
 client.start(process.env.PORT || 'NONE', async () => {
 	console.log('Test client started listening')

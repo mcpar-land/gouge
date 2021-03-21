@@ -3,9 +3,15 @@ import { Command } from './command'
 import nacl from 'tweetnacl'
 import fetch from 'node-fetch'
 import { apiUrl } from './api'
-import { CommandOption } from './command-types'
+import { CommandOption, CommandOptionType } from './command-types'
 import chalk from 'chalk'
 import indentString from 'indent-string'
+import {
+	InteractionDataOptionOptions,
+	InteractionDataOptionValue,
+	InteractionRaw,
+} from './types/Interaction'
+import { CommandHandler, responseFunction, ResponseFunction } from './handler'
 
 export type GougeClientOptions = {
 	/** Your Discord application's *Public Key* */
@@ -92,20 +98,8 @@ export class GougeClient {
 			if (req.body.type == 1) {
 				return res.status(200).send({ type: 1 })
 			}
-			const id = req.body.data.id
-			// find the command
-			let command: Command<any, any> | undefined =
-				this.commands[id] ||
-				(this.guildCommands[req.body.guild_id]
-					? this.guildCommands[req.body.guild_id][id]
-					: undefined)
 
-			try {
-				await command?.doHandle(this, req.body)
-			} catch (err) {
-				console.error('Error processing interaction')
-				console.error(err.message)
-			}
+			await this.handle(req.body)
 		})
 	}
 
@@ -322,5 +316,100 @@ export class GougeClient {
 			)
 		}
 		return json
+	}
+
+	/**
+	 * Handle an incoming interaction
+	 * @param interaction
+	 */
+	async handle(interaction: any) {
+		try {
+			let rf: ResponseFunction = responseFunction(this, interaction)
+			let [handler, args] = this.getFxn(interaction)
+			await handler(this, rf, args)
+		} catch (err) {
+			console.error('Error processing interaction')
+			console.error(err.message)
+		}
+	}
+
+	/** Get a command by an id (Will still return global command if available,
+	 * even if a guild id is provided) */
+	getCommandById(id: string, guildId?: string): Command<any, any> | undefined {
+		if (guildId) {
+			return this.guildCommands[guildId]
+				? this.guildCommands[guildId][id] || this.commands[id]
+				: this.commands[id]
+		} else {
+			return this.commands[id]
+		}
+	}
+
+	/**
+	 * Gets the nested handler function from an interaction, and the relevant
+	 * options/args (resolved correctly)
+	 * @param interaction
+	 * @returns
+	 * @internal
+	 */
+	private getFxn(
+		interaction: any
+	): [CommandHandler<CommandOption<any>[]>, any[]] {
+		let baseCmd = this.getCommandById(interaction.data.id, interaction.guild_id)
+
+		if (baseCmd)
+			return this.getFxnRec(
+				interaction.data,
+				baseCmd,
+				interaction.data.resolved
+			)
+		else
+			throw new Error(
+				'Command not registered: ' +
+					interaction.id +
+					' ' +
+					interaction.data.name
+			)
+	}
+
+	/** @internal */
+	private getFxnRec(
+		data: any,
+		baseCmd: CommandOption<any>,
+		resolved: any
+	): [CommandHandler<CommandOption<any>[]>, any[]] {
+		if (data.options !== undefined && data.options.length > 0) {
+			let isGroup = data.options[0].type === CommandOptionType.SUB_COMMAND_GROUP
+			let isCmd = data.options[0].type === CommandOptionType.SUB_COMMAND
+
+			let matchingBase = (baseCmd as Command<any, any[]>).options?.find(
+				(val) => val.name === data.options[0].name
+			)
+
+			if (!matchingBase)
+				throw new Error(
+					'Sub command / group not found: ' + data.options[0].name
+				)
+
+			if (isGroup) {
+				return this.getFxnRec(data.options[0], matchingBase, resolved)
+			} else if (isCmd) {
+				if (matchingBase.handlerFxn)
+					return [
+						matchingBase.handlerFxn,
+						matchingBase.resolveOptions(data.options[0].options, resolved),
+					]
+				else throw new Error('No handler found')
+			} else {
+				return [
+					(baseCmd as any).handlerFxn,
+					(baseCmd as any).resolveOptions(data.options, resolved),
+				]
+				throw new Error('Sub option is not a command or group')
+			}
+		} else {
+			return [(baseCmd as any).handlerFxn, []]
+			throw new Error('Sub option is not a command')
+		}
 	}
 }

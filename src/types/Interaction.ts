@@ -53,7 +53,7 @@ export interface InteractionDataOptionOptions<
 		| InteractionDataOption<any>
 		| TYPE_MAP[CommandOptionType]
 		| undefined
-	)[]
+	)[] = (InteractionDataOption<any> | TYPE_MAP[CommandOptionType] | undefined)[]
 > extends InteractionDataOption<N> {
 	options: O
 }
