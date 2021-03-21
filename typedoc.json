@@ -4,5 +4,5 @@
 	"excludePrivate": true,
 	"excludeInternal": true,
 	"exclude": "**/*.spec.ts",
-	"theme": "minimal"
+	"theme": "default"
 }

@@ -32,7 +32,7 @@ describe('convert interaction to handler', () => {
 			},
 		}
 		let args = [69, 69, 69, true]
-		expect(cmd.convertInteractionToArgs(i)).toEqual(args)
+		expect(cmd.resolveOptions(i.data.options, [])).toEqual(args)
 	})
 	test('only required args', () => {
 		let i = {
@@ -47,7 +47,7 @@ describe('convert interaction to handler', () => {
 			},
 		}
 		let args = [69, undefined, undefined, undefined]
-		expect(cmd.convertInteractionToArgs(i)).toEqual(args)
+		expect(cmd.resolveOptions(i.data.options, [])).toEqual(args)
 	})
 	test('missing tailing args', () => {
 		let i = {
@@ -66,7 +66,7 @@ describe('convert interaction to handler', () => {
 			},
 		}
 		let args = [69, 69, undefined, undefined]
-		expect(cmd.convertInteractionToArgs(i)).toEqual(args)
+		expect(cmd.resolveOptions(i.data.options, [])).toEqual(args)
 	})
 	test('missing center args', () => {
 		let i = {
@@ -85,7 +85,7 @@ describe('convert interaction to handler', () => {
 			},
 		}
 		let args = [69, undefined, undefined, true]
-		expect(cmd.convertInteractionToArgs(i)).toEqual(args)
+		expect(cmd.resolveOptions(i.data.options, [])).toEqual(args)
 	})
 	test('missing center and tailing', () => {
 		let i = {
@@ -104,6 +104,149 @@ describe('convert interaction to handler', () => {
 			},
 		}
 		let args = [69, undefined, 69, undefined]
-		expect(cmd.convertInteractionToArgs(i)).toEqual(args)
+		expect(cmd.resolveOptions(i.data.options, [])).toEqual(args)
+	})
+})
+
+describe('resolve values', () => {
+	const testcommand = command('testcommand', '')
+		.string('frindle', '', true)
+		.user('someuser', '')
+		.role('somerole', '')
+		.channel('somechannel', '')
+
+	test('resolve user', () => {
+		let opts = [
+			{
+				name: 'frindle',
+				type: 3,
+				value: 'pen pen pen',
+			},
+			{
+				name: 'someuser',
+				type: 6,
+				value: '123456789',
+			},
+		]
+		let resolved = {
+			users: {
+				'123456789': {
+					id: '123456789',
+					username: 'Some User',
+				},
+			},
+		}
+		expect(testcommand.resolveOptions(opts, resolved)).toEqual([
+			'pen pen pen',
+			{
+				id: '123456789',
+				username: 'Some User',
+			},
+			undefined,
+			undefined,
+		])
+	})
+	test('resolve member', () => {
+		let opts = [
+			{
+				name: 'frindle',
+				type: 3,
+				value: 'pen pen pen',
+			},
+			{
+				name: 'someuser',
+				type: 6,
+				value: '123456789',
+			},
+		]
+		let resolved = {
+			members: {
+				'123456789': {
+					id: '123456789',
+					nick: 'Some Nickname',
+				},
+			},
+			users: {
+				'123456789': {
+					id: '123456789',
+					username: 'Some User',
+				},
+			},
+		}
+		expect(testcommand.resolveOptions(opts, resolved)).toEqual([
+			'pen pen pen',
+			{
+				id: '123456789',
+				nick: 'Some Nickname',
+				user: {
+					id: '123456789',
+					username: 'Some User',
+				},
+			},
+			undefined,
+			undefined,
+		])
+	})
+	test('resolve role', () => {
+		let opts = [
+			{
+				name: 'frindle',
+				type: 3,
+				value: 'pen pen pen pen',
+			},
+			{
+				name: 'somerole',
+				type: 8,
+				value: '123456789',
+			},
+		]
+		let resolved = {
+			roles: {
+				'123456789': {
+					id: '123456789',
+					name: 'Some Role',
+				},
+			},
+		}
+		expect(testcommand.resolveOptions(opts, resolved)).toEqual([
+			'pen pen pen pen',
+			undefined,
+			{
+				id: '123456789',
+				name: 'Some Role',
+			},
+			undefined,
+		])
+	})
+	test('resolve channel', () => {
+		let opts = [
+			{
+				name: 'frindle',
+				type: 3,
+				value: 'pen pen pen pen',
+			},
+			{
+				name: 'somechannel',
+				type: 7,
+				value: '123456789',
+			},
+		]
+		let resolved = {
+			channels: {
+				'123456789': {
+					id: '123456789',
+					name: 'Some Channel',
+				},
+			},
+		}
+		expect(testcommand.resolveOptions(opts, resolved)).toEqual([
+			'pen pen pen pen',
+			undefined,
+			undefined,
+			{
+				id: '123456789',
+				name: 'Some Channel',
+			},
+		])
 	})
 })
