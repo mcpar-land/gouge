@@ -6,7 +6,6 @@
 	"repository": "https://github.com/mcpar-land/gouge",
 	"license": "MIT",
 	"scripts": {
-		"prepublish": "tsc",
 		"dev": "nodemon --exec node -r ts-node/register test/test-client.ts",
 		"test": "jest",
 		"build": "tsc",

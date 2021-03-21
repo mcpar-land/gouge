@@ -1,9 +1,9 @@
 name: Publish to NPM
 on:
   push:
-    branches: [ master ]
+    branches: [master]
     tags:
-      - "v*"
+      - 'v*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,6 +16,8 @@ jobs:
         run: yarn
       - name: Run Tests
         run: yarn test
+      - name: Build
+        run: yarn build
       - name: Publish to NPM
         uses: JS-DevTools/npm-publish@v1
         with:
