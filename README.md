@@ -1,6 +1,8 @@
 <h1 align="center">Gouge</h1>
 <p align="center">
-<a href="https://mcpar-land.github.io/gouge/">Docs</a> - <a href="/test">Examples</a>
+<a href="https://mcpar-land.github.io/gouge/">Docs</a> -
+<a href="https://github.com/mcpar-land/gouge-examples">Examples</a> - 
+<a href="https://github.com/mcpar-land/gouge/wiki">Wiki</a>
 </p>
 
 Super-ergonomic discord bot framework, using the new Slash Commands API.
@@ -32,8 +34,6 @@ client.with(
     })
 )
 ```
-
-Check out the small [Example Bot](/test/test-client.ts)
 
 ## Scope
 
