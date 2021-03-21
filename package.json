@@ -5,6 +5,12 @@
 	"types": "build.index.d.ts",
 	"repository": "https://github.com/mcpar-land/gouge",
 	"license": "MIT",
+	"keywords": [
+		"discord",
+		"slash",
+		"bot",
+		"ergonomic"
+	],
 	"scripts": {
 		"dev": "nodemon --exec node -r ts-node/register test/test-client.ts",
 		"test": "jest",
