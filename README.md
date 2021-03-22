@@ -1,5 +1,6 @@
 <h1 align="center">Gouge</h1>
 <p align="center">
+<a href="https://www.npmjs.com/package/gouge">NPM</a> -
 <a href="https://mcpar-land.github.io/gouge/">Docs</a> -
 <a href="https://github.com/mcpar-land/gouge-examples">Examples</a> - 
 <a href="https://github.com/mcpar-land/gouge/wiki">Wiki</a>
