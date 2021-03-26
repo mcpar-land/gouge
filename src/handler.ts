@@ -1,3 +1,4 @@
+import { IUser, IChannel, IRole, IMember } from '.'
 import { GougeClient } from './client'
 import { CommandOption } from './command-types'
 import {
@@ -5,12 +6,6 @@ import {
 	InteractionRaw,
 } from './types/Interaction'
 import { Response } from './types/Response'
-
-export type RawHandler = (
-	client: GougeClient,
-	respond: ResponseFunction,
-	interaction: InteractionRaw<{}>
-) => Promise<void>
 
 /**
  * Handler callback, for use in [[Command.handler]]
@@ -36,8 +31,37 @@ export type RawHandler = (
 export type CommandHandler<T extends CommandOption<any>[]> = (
 	client: GougeClient,
 	respond: ResponseFunction,
-	args: ConvertOptionArrayToInteractionArgArray<T>
+	args: ConvertOptionArrayToInteractionArgArray<T>,
+	props: {
+		id: string
+		guildId: string
+		sender: IUser | IMember
+		channelId: string
+	}
 ) => Promise<void>
+
+/**
+ * Expected to return true if the command is handled, false otherwise.
+ */
+export type RawHandler = (
+	client: GougeClient,
+	respond: ResponseFunction,
+	commandNames: string[],
+	args: {
+		[name: string]:
+			| number
+			| string
+			| boolean
+			| IUser
+			| IMember
+			| IChannel
+			| IRole
+	},
+	props: {
+		id: string
+		guildId: string
+	}
+) => Promise<boolean>
 
 /**
  * Edit an existing response message

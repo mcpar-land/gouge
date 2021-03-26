@@ -1,5 +1,6 @@
 import { command } from './command'
 import { GougeClient } from './index'
+import { InteractionType } from './types/Interaction'
 
 describe('recursive handler function grabbing', () => {
 	const client = new GougeClient({} as any)
@@ -196,5 +197,81 @@ describe('recursive handler function grabbing', () => {
 			},
 		} as any)
 		expect(raspberryRes).toEqual([undefined, 'barvalue'])
+	})
+})
+
+describe('raw handle', () => {
+	test('single raw handler', async () => {
+		let rawHandlerCalled = false
+
+		const client = new GougeClient({} as any)
+
+		client.raw(async () => {
+			rawHandlerCalled = true
+
+			return true
+		})
+
+		await client.handle({
+			id: '333',
+			token: '34',
+			type: InteractionType.ApplicationCommand,
+			version: 1,
+			data: {
+				id: 'abcdef',
+				name: 'breads',
+				options: [
+					{
+						type: 2,
+						name: 'bagels',
+						options: [
+							{
+								type: 1,
+								name: 'plain',
+							},
+						],
+					},
+				],
+			},
+			member: {},
+			guild_id: '1234',
+			channel_id: '45397548378549',
+		})
+
+		expect(rawHandlerCalled).toBe(true)
+	})
+
+	const testInteraction = {
+		id: '34',
+		token: 'asdf',
+		type: InteractionType.ApplicationCommand,
+		version: 1,
+		data: {
+			id: 'qwert',
+			name: 'bolo_tie',
+			options: [],
+		},
+		member: {},
+		guild_id: '1234',
+		channel_id: '12341234',
+	}
+	test('false with registered command', async () => {
+		const client = new GougeClient({} as any)
+		client.raw(async () => false)
+
+		let handled = false
+
+		client.commands['qwert'] = command('bolo_tie', '').handler(async () => {
+			handled = true
+		})
+
+		await client.handle(testInteraction)
+		expect(handled).toBe(true)
+	})
+	test('throw with false and no registered command', async () => {
+		const client = new GougeClient({} as any)
+		client.raw(async () => false)
+
+		await expect(client.handle(testInteraction)).rejects.toThrow()
 	})
 })

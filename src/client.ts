@@ -7,11 +7,18 @@ import { CommandOption, CommandOptionType } from './command-types'
 import chalk from 'chalk'
 import indentString from 'indent-string'
 import {
+	interactionCommandNames,
 	InteractionDataOptionOptions,
 	InteractionDataOptionValue,
 	InteractionRaw,
 } from './types/Interaction'
-import { CommandHandler, responseFunction, ResponseFunction } from './handler'
+import {
+	CommandHandler,
+	RawHandler,
+	responseFunction,
+	ResponseFunction,
+} from './handler'
+import { IChannel, IRole, IUser } from './types/Discord'
 
 export type GougeClientOptions = {
 	/** Your Discord application's *Public Key* */
@@ -47,6 +54,8 @@ export class GougeClient {
 	private testGuildId?: string
 	private pendingCommands: Command<any, any>[]
 
+	private rawHandler?: RawHandler
+
 	/** A map of all successfully registered global commands. */
 	commands: {
 		[id: string]: Command<any, any>
@@ -69,6 +78,7 @@ export class GougeClient {
 		this.commands = {}
 		this.guildCommands = {}
 		this.pendingCommands = []
+		this.rawHandler = undefined
 
 		this.app.use(
 			Express.json({
@@ -99,7 +109,11 @@ export class GougeClient {
 				return res.status(200).send({ type: 1 })
 			}
 
-			await this.handle(req.body)
+			try {
+				await this.handle(req.body)
+			} catch (err) {
+				console.error('Error handling command:', err)
+			}
 		})
 	}
 
@@ -130,6 +144,20 @@ export class GougeClient {
 					if (callback) callback()
 				})
 			)
+	}
+
+	/**
+	 * Add a handler that always acts upon incoming interactions.
+	 *
+	 * Your handler should return a boolean. if `true`, the interaction was
+	 * successfully handled. If `false`, your interaction will be passed on to
+	 * the default command handlers.
+	 * @param handler
+	 * @returns
+	 */
+	raw(handler: RawHandler): GougeClient {
+		this.rawHandler = handler
+		return this
 	}
 
 	private async getRegisteredCommands(): Promise<{
@@ -323,13 +351,30 @@ export class GougeClient {
 	 * @param interaction
 	 */
 	async handle(interaction: any) {
-		try {
-			let rf: ResponseFunction = responseFunction(this, interaction)
+		let rf: ResponseFunction = responseFunction(this, interaction)
+		let handledByRaw = false
+		if (this.rawHandler) {
+			const [commandNames, commandArgs] = interactionCommandNames(interaction)
+			handledByRaw = await this.rawHandler(
+				this,
+				rf,
+				commandNames,
+				commandArgs,
+				{
+					id: interaction.id,
+					guildId: interaction.guild_id,
+				}
+			)
+		}
+
+		if (!handledByRaw) {
 			let [handler, args] = this.getFxn(interaction)
-			await handler(this, rf, args)
-		} catch (err) {
-			console.error('Error processing interaction')
-			console.error(err.message)
+			await handler(this, rf, args, {
+				id: interaction.id,
+				guildId: interaction.guild_id,
+				sender: interaction.member || interaction.user,
+				channelId: interaction.channel_id,
+			})
 		}
 	}
 
@@ -366,7 +411,7 @@ export class GougeClient {
 		else
 			throw new Error(
 				'Command not registered: ' +
-					interaction.id +
+					interaction.data.id +
 					' ' +
 					interaction.data.name
 			)

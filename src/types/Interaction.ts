@@ -99,3 +99,33 @@ export type ConvertOptionArrayToInteractionArgArray<
 		? ConvertOptionToInteractionArg<A[K]>
 		: unknown
 }
+
+export function interactionCommandNames(
+	interaction: any
+): [
+	string[],
+	{
+		[name: string]: any
+	}
+] {
+	let [names, data] = icnRecurse(interaction.data, [interaction.data.name])
+	let args: any = {}
+	if (data.options)
+		for (const v of data.options) {
+			args[v.name] = v.value
+		}
+	return [names, args]
+}
+
+function icnRecurse(data: any, names: string[]): [string[], any] {
+	if (
+		data.options &&
+		data.options.length > 0 &&
+		(data.options[0].type === CommandOptionType.SUB_COMMAND ||
+			data.options[0].type === CommandOptionType.SUB_COMMAND_GROUP)
+	) {
+		return icnRecurse(data.options[0], [...names, data.options[0].name])
+	} else {
+		return [names, data]
+	}
+}

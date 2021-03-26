@@ -1,13 +1,15 @@
 {
 	"name": "gouge",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"main": "build/index.js",
 	"types": "build.index.d.ts",
 	"repository": "https://github.com/mcpar-land/gouge",
+	"description": "Ergonomic library for building bots that use Discord Slash Commands.",
 	"license": "MIT",
 	"keywords": [
 		"discord",
 		"slash",
+		"commands",
 		"bot",
 		"ergonomic"
 	],

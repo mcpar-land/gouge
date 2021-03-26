@@ -256,7 +256,7 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	resolveOptions(options: any[] | undefined, resolvedValues: any): any[] {
 		let names = this.argNames()
 		let args = new Array(names.length).fill(undefined)
-		if (!options) return args
+		if (!options || options.length == 0) return args
 		for (const arg of options) {
 			let i = names.indexOf(arg.name)
 			args[i] = arg.value

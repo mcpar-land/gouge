@@ -1,4 +1,66 @@
 import { command } from '../command'
+import { CommandOptionType } from '../command-types'
+import { interactionCommandNames } from './Interaction'
+
+test('interaction command names', () => {
+	expect(
+		interactionCommandNames({
+			data: {
+				name: 'zero',
+				options: [
+					{
+						name: 'arg',
+						type: CommandOptionType.BOOLEAN,
+					},
+				],
+			},
+		})[0]
+	).toEqual(['zero'])
+	expect(
+		interactionCommandNames({
+			data: {
+				name: 'one',
+				options: [
+					{
+						name: 'two',
+						type: CommandOptionType.SUB_COMMAND,
+						options: [
+							{
+								name: 'subtwo',
+								type: CommandOptionType.INTEGER,
+							},
+						],
+					},
+				],
+			},
+		})[0]
+	).toEqual(['one', 'two'])
+	expect(
+		interactionCommandNames({
+			data: {
+				name: 'a',
+				options: [
+					{
+						name: 'b',
+						type: CommandOptionType.SUB_COMMAND_GROUP,
+						options: [
+							{
+								name: 'c',
+								type: CommandOptionType.SUB_COMMAND,
+								options: [
+									{
+										name: 'arg',
+										type: CommandOptionType.STRING,
+									},
+								],
+							},
+						],
+					},
+				],
+			},
+		})[0]
+	).toEqual(['a', 'b', 'c'])
+})
 
 describe('convert interaction to handler', () => {
 	let cmd = command('foo', 'foo cmd')
