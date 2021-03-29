@@ -1,5 +1,5 @@
 import * as Express from 'express'
-import { Command } from './command'
+import { Command, SubCommandGroupCommand, SubCommandsCommand } from './command'
 import nacl from 'tweetnacl'
 import fetch from 'node-fetch'
 import { apiUrl } from './api'
@@ -19,6 +19,12 @@ import {
 	ResponseFunction,
 } from './handler'
 import { IChannel, IRole, IUser } from './types/Discord'
+import { HandledCommand } from '.'
+
+type CommandGeneral =
+	| HandledCommand
+	| SubCommandsCommand
+	| SubCommandGroupCommand
 
 export type GougeClientOptions = {
 	/** Your Discord application's *Public Key* */
@@ -52,19 +58,23 @@ export class GougeClient {
 	id: string
 
 	private testGuildId?: string
-	private pendingCommands: Command<any, any>[]
+	private pendingCommands: (
+		| HandledCommand
+		| SubCommandsCommand
+		| SubCommandGroupCommand
+	)[]
 
 	private rawHandler?: RawHandler
 
 	/** A map of all successfully registered global commands. */
 	commands: {
-		[id: string]: Command<any, any>
+		[id: string]: CommandGeneral
 	}
 
 	/** Nesting maps of all successfully registered guild-specific commands.*/
 	guildCommands: {
 		[guildId: string]: {
-			[id: string]: Command<any, any>
+			[id: string]: CommandGeneral
 		}
 	}
 
@@ -117,9 +127,7 @@ export class GougeClient {
 		})
 	}
 
-	with<N extends string, T extends CommandOption<any>[]>(
-		command: Command<N, T>
-	): GougeClient {
+	with(command: CommandGeneral): GougeClient {
 		// this.registerCommand((command as unknown) as Command<any, any>)
 		this.pendingCommands.push(command)
 		return this
@@ -161,7 +169,7 @@ export class GougeClient {
 	}
 
 	private async getRegisteredCommands(): Promise<{
-		[id: string]: Command<any, any>
+		[id: string]: Command<any>
 	}> {
 		return this.rawCommands(
 			this.testGuildId
@@ -172,7 +180,7 @@ export class GougeClient {
 
 	private async getRegisteredGuildCommands(
 		guildId: string
-	): Promise<{ [id: string]: Command<any, any> }> {
+	): Promise<{ [id: string]: Command<any> }> {
 		return this.rawCommands(
 			`/applications/${this.id}/guilds/${guildId}/commands`
 		)
@@ -180,9 +188,9 @@ export class GougeClient {
 
 	private async rawCommands(
 		url: string
-	): Promise<{ [id: string]: Command<any, any> }> {
+	): Promise<{ [id: string]: Command<any> }> {
 		let commandsRaw = await this.api(url)
-		let commands: { [id: string]: Command<any, any> } = {}
+		let commands: { [id: string]: Command<any> } = {}
 		for (const rawCmd of commandsRaw) {
 			let cmd = new Command(rawCmd.name, rawCmd.description)
 			cmd.options = rawCmd.options
@@ -192,7 +200,7 @@ export class GougeClient {
 		return commands
 	}
 
-	async delete(id: string | Command<any, any>) {
+	async delete(id: string | Command<any>) {
 		let _id: string = typeof id === 'string' ? id : id.id
 
 		try {
@@ -204,7 +212,7 @@ export class GougeClient {
 		}
 	}
 
-	async deleteGuild(id: string | Command<any, any>, guildId: string) {
+	async deleteGuild(id: string | Command<any>, guildId: string) {
 		let _id: string = typeof id === 'string' ? id : id.id
 
 		try {
@@ -237,7 +245,7 @@ export class GougeClient {
 		)
 	}
 
-	async registerCommand(command: Command<any, any>, guildId?: string) {
+	async registerCommand(command: CommandGeneral, guildId?: string) {
 		let endpoint: string
 		let isGlobal: boolean = false
 		if (!guildId) {
@@ -380,7 +388,7 @@ export class GougeClient {
 
 	/** Get a command by an id (Will still return global command if available,
 	 * even if a guild id is provided) */
-	getCommandById(id: string, guildId?: string): Command<any, any> | undefined {
+	getCommandById(id: string, guildId?: string): CommandGeneral | undefined {
 		if (guildId) {
 			return this.guildCommands[guildId]
 				? this.guildCommands[guildId][id] || this.commands[id]
@@ -397,9 +405,7 @@ export class GougeClient {
 	 * @returns
 	 * @internal
 	 */
-	private getFxn(
-		interaction: any
-	): [CommandHandler<CommandOption<any>[]>, any[]] {
+	private getFxn(interaction: any): [CommandHandler<CommandOption[]>, any[]] {
 		let baseCmd = this.getCommandById(interaction.data.id, interaction.guild_id)
 
 		if (baseCmd)
@@ -420,14 +426,14 @@ export class GougeClient {
 	/** @internal */
 	private getFxnRec(
 		data: any,
-		baseCmd: CommandOption<any>,
+		baseCmd: CommandOption,
 		resolved: any
-	): [CommandHandler<CommandOption<any>[]>, any[]] {
+	): [CommandHandler<CommandOption[]>, any[]] {
 		if (data.options !== undefined && data.options.length > 0) {
 			let isGroup = data.options[0].type === CommandOptionType.SUB_COMMAND_GROUP
 			let isCmd = data.options[0].type === CommandOptionType.SUB_COMMAND
 
-			let matchingBase = (baseCmd as Command<any, any[]>).options?.find(
+			let matchingBase = (baseCmd as Command<any[]>).options?.find(
 				(val) => val.name === data.options[0].name
 			)
 

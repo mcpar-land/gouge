@@ -19,8 +19,8 @@ client.with(
 			{ name: 'Cat', value: 'animal_cat' },
 			{ name: 'Penguin', value: 'animal_penguin' },
 		])
-		.boolean('only_smol', 'Whether to show only baby animals', false)
-		.boolean('dangerous', 'Whether to show only dangerous animals', false)
+		.boolean('only_smol', 'Whether to show only baby animals', true)
+		.boolean('dangerous', 'Whether to show only dangerous animals')
 		.integer('count', 'Show more than 1 picture', false)
 		.handler(async (client, respond, [animal, onlySmol, dangerous, count]) => {
 			const [edit, del, followup] = await respond({
@@ -42,7 +42,7 @@ client.with(
 	command('specials', 'Get arguments of special types')
 		.user('special_user', 'Get a user', true)
 		.channel('special_channel', 'Get a channel', true)
-		.role('special_role', 'Get a role', true)
+		.role('special_role', 'Get a role', false)
 		.handler(async (client, respond, [user, channel, role]) => {
 			let response =
 				'User\n```' +

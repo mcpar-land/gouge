@@ -17,140 +17,112 @@ export interface OptionChoice<T> {
 }
 
 /** @internal */
-export interface CommandOption<N extends string> {
+export interface CommandOption {
 	type: CommandOptionType
-	name: N
+	name: string
 	description: string
 }
 
 /** @internal */
-export interface CommandOptionSubCommand<
-	N extends string,
-	O extends CommandOptionRequirable<any>[]
-> extends CommandOption<N> {
+export interface CommandOptionSubCommand extends CommandOption {
 	type: CommandOptionType.SUB_COMMAND
-	options: O
+	options: CommandOptionRequirable<any>[]
 }
 
 /** @internal */
-export interface CommandOptionSubCommandGroup<
-	N extends string,
-	O extends CommandOptionSubCommand<any, any>[]
-> extends CommandOption<N> {
+export interface CommandOptionSubCommandGroup extends CommandOption {
 	type: CommandOptionType.SUB_COMMAND_GROUP
-	options: O
+	options: CommandOptionSubCommand[]
 }
 
 /** @internal */
-export interface CommandOptionRequirable<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOption<N> {
+export interface CommandOptionRequirable<R extends boolean = false>
+	extends CommandOption {
 	required?: R
 }
 
 /** @internal */
-export interface CommandOptionString<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionString<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.STRING
 	choices?: OptionChoice<string>[]
 }
 
 /** @internal */
-export interface CommandOptionInteger<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionInteger<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.INTEGER
 	choices?: OptionChoice<number>[]
 }
 
 /** @internal */
-export interface CommandOptionBoolean<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionBoolean<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.BOOLEAN
 }
 
 /** @internal */
-export interface CommandOptionUser<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionUser<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.USER
 }
 
 /** @internal */
-export interface CommandOptionChannel<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionChannel<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.CHANNEL
 }
 
 /** @internal */
-export interface CommandOptionRole<
-	N extends string,
-	R extends true | false | undefined = undefined
-> extends CommandOptionRequirable<N, R> {
+export interface CommandOptionRole<R extends boolean>
+	extends CommandOptionRequirable<R> {
 	type: CommandOptionType.ROLE
 }
 
 /** @internal */
-export type CommandOptionArraySubCommand<
-	N extends string,
-	O extends CommandOptionRequirable<any>[],
-	A extends CommandOption<any>[]
-> = [...A, CommandOptionSubCommand<N, O>]
+export type CommandOptionArraySubCommand<A extends CommandOption[]> = [
+	...A,
+	CommandOptionSubCommand
+]
 
 /** @internal */
-export type CommandOptionArraySubCommandGroup<
-	N extends string,
-	S extends CommandOptionSubCommand<any, any>[],
-	A extends CommandOption<any>[]
-> = [...A, CommandOptionSubCommand<N, S>]
+export type CommandOptionArraySubCommandGroup<A extends CommandOption[]> = [
+	...A,
+	CommandOptionSubCommand
+]
 
 /** @internal */
 export type CommandOptionArrayString<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionString<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionString<R>]
 
 /** @internal */
 export type CommandOptionArrayInteger<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionInteger<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionInteger<R>]
 
 /** @internal */
 export type CommandOptionArrayBoolean<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionBoolean<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionBoolean<R>]
 
 /** @internal */
 export type CommandOptionArrayUser<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionUser<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionUser<R>]
 
 /** @internal */
 export type CommandOptionArrayChannel<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionChannel<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionChannel<R>]
 
 /** @internal */
 export type CommandOptionArrayRole<
-	N extends string,
-	A extends CommandOptionRequirable<any>[],
-	R extends true | false | undefined = undefined
-> = [...A, CommandOptionRole<N, R>]
+	A extends CommandOptionRequirable<boolean>[],
+	R extends boolean
+> = [...A, CommandOptionRole<R>]
