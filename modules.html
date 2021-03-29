@@ -97,15 +97,19 @@
 								<li class="tsd-kind-type-alias"><a href="modules.html#editresponse" class="tsd-kind-icon">Edit<wbr>Response</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#followupresponse" class="tsd-kind-icon">Followup<wbr>Response</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#gougeclientoptions" class="tsd-kind-icon">Gouge<wbr>Client<wbr>Options</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#handledcommand" class="tsd-kind-icon">Handled<wbr>Command</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="modules.html#nohandlercommand" class="tsd-kind-icon">No<wbr>Handler<wbr>Command</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#rawhandler" class="tsd-kind-icon">Raw<wbr>Handler</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#responsefunction" class="tsd-kind-icon">Response<wbr>Function</a></li>
 								<li class="tsd-kind-type-alias"><a href="modules.html#snowflake" class="tsd-kind-icon">Snowflake</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#subcommandgroupcommand" class="tsd-kind-icon">Sub<wbr>Command<wbr>Group<wbr>Command</a></li>
+								<li class="tsd-kind-type-alias"><a href="modules.html#subcommandscommand" class="tsd-kind-icon">Sub<wbr>Commands<wbr>Command</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-has-type-parameter"><a href="modules.html#command" class="tsd-kind-icon">command</a></li>
+								<li class="tsd-kind-function"><a href="modules.html#command" class="tsd-kind-icon">command</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#interactioncommandnames" class="tsd-kind-icon">interaction<wbr>Command<wbr>Names</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#ismember" class="tsd-kind-icon">is<wbr>Member</a></li>
 								<li class="tsd-kind-function"><a href="modules.html#responsefunction" class="tsd-kind-icon">response<wbr>Function</a></li>
@@ -122,7 +126,7 @@
 					<div class="tsd-signature tsd-kind-icon">Command<wbr>Handler&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">: </span><a href="classes/gougeclient.html" class="tsd-signature-type" data-tsd-kind="Class">GougeClient</a>, respond<span class="tsd-signature-symbol">: </span><a href="modules.html#responsefunction" class="tsd-signature-type" data-tsd-kind="Type alias">ResponseFunction</a>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">ConvertOptionArrayToInteractionArgArray</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>channelId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>guildId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>sender<span class="tsd-signature-symbol">: </span><a href="interfaces/iuser.html" class="tsd-signature-type" data-tsd-kind="Interface">IUser</a><span class="tsd-signature-symbol"> | </span><a href="interfaces/imember.html" class="tsd-signature-type" data-tsd-kind="Interface">IMember</a><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L31">handler.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L31">handler.ts:31</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -159,7 +163,7 @@
 					<h4 class="tsd-type-parameters-title">Type parameters</h4>
 					<ul class="tsd-type-parameters">
 						<li>
-							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionRequirable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 						</li>
 					</ul>
 					<div class="tsd-type-declaration">
@@ -213,7 +217,7 @@
 					<div class="tsd-signature tsd-kind-icon">Delete<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L91">handler.ts:91</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L91">handler.ts:91</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -253,7 +257,7 @@
 					<div class="tsd-signature tsd-kind-icon">Edit<wbr>Followup<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><a href="interfaces/response.html" class="tsd-signature-type" data-tsd-kind="Interface">Response</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L110">handler.ts:110</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L110">handler.ts:110</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -284,7 +288,7 @@
 					<div class="tsd-signature tsd-kind-icon">Edit<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>edit<span class="tsd-signature-symbol">: </span><a href="interfaces/response.html" class="tsd-signature-type" data-tsd-kind="Interface">Response</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L78">handler.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L78">handler.ts:78</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -330,7 +334,7 @@
 					<div class="tsd-signature tsd-kind-icon">Followup<wbr>Response<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>content<span class="tsd-signature-symbol">: </span><a href="interfaces/response.html" class="tsd-signature-type" data-tsd-kind="Interface">Response</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="modules.html#editfollowupresponse" class="tsd-signature-type" data-tsd-kind="Type alias">EditFollowupResponse</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L107">handler.ts:107</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L107">handler.ts:107</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -378,7 +382,7 @@
 					<div class="tsd-signature tsd-kind-icon">Gouge<wbr>Client<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>secret<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>testGuildId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>token<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/client.ts#L23">client.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/client.ts#L29">client.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-type-declaration">
@@ -431,12 +435,38 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="handledcommand" class="tsd-anchor"></a>
+					<h3>Handled<wbr>Command</h3>
+					<div class="tsd-signature tsd-kind-icon">Handled<wbr>Command<span class="tsd-signature-symbol">:</span> <a href="modules.html#nohandlercommand" class="tsd-signature-type" data-tsd-kind="Type alias">NoHandlerCommand</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L29">command.ts:29</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+					<a name="nohandlercommand" class="tsd-anchor"></a>
+					<h3>No<wbr>Handler<wbr>Command</h3>
+					<div class="tsd-signature tsd-kind-icon">No<wbr>Handler<wbr>Command&lt;T&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="classes/command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;handler&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;boolean&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;string&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;integer&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;user&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;role&quot;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">&quot;channel&quot;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L31">command.ts:31</a></li>
+						</ul>
+					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
 					<a name="rawhandler" class="tsd-anchor"></a>
 					<h3>Raw<wbr>Handler</h3>
 					<div class="tsd-signature tsd-kind-icon">Raw<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>client<span class="tsd-signature-symbol">: </span><a href="classes/gougeclient.html" class="tsd-signature-type" data-tsd-kind="Class">GougeClient</a>, respond<span class="tsd-signature-symbol">: </span><a href="modules.html#responsefunction" class="tsd-signature-type" data-tsd-kind="Type alias">ResponseFunction</a>, commandNames<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span>, props<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>guildId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L46">handler.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L46">handler.ts:46</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -497,7 +527,7 @@
 					<div class="tsd-signature tsd-kind-icon">Response<wbr>Function<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>response<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/response.html" class="tsd-signature-type" data-tsd-kind="Interface">Response</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><a href="modules.html#editresponse" class="tsd-signature-type" data-tsd-kind="Type alias">EditResponse</a><span class="tsd-signature-symbol">, </span><a href="modules.html#deleteresponse" class="tsd-signature-type" data-tsd-kind="Type alias">DeleteResponse</a><span class="tsd-signature-symbol">, </span><a href="modules.html#followupresponse" class="tsd-signature-type" data-tsd-kind="Type alias">FollowupResponse</a><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L122">handler.ts:122</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L122">handler.ts:122</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -541,24 +571,44 @@
 					<div class="tsd-signature tsd-kind-icon">Snowflake<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/types/Interaction.ts#L10">types/Interaction.ts:10</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/types/Interaction.ts#L10">types/Interaction.ts:10</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="subcommandgroupcommand" class="tsd-anchor"></a>
+					<h3>Sub<wbr>Command<wbr>Group<wbr>Command</h3>
+					<div class="tsd-signature tsd-kind-icon">Sub<wbr>Command<wbr>Group<wbr>Command<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#nohandlercommand" class="tsd-signature-type" data-tsd-kind="Type alias">NoHandlerCommand</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CommandOptionSubCommandGroup</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;subcommand&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionType.SUB_COMMAND_GROUP</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L43">command.ts:43</a></li>
+						</ul>
+					</aside>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-type-alias">
+					<a name="subcommandscommand" class="tsd-anchor"></a>
+					<h3>Sub<wbr>Commands<wbr>Command</h3>
+					<div class="tsd-signature tsd-kind-icon">Sub<wbr>Commands<wbr>Command<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Omit</span><span class="tsd-signature-symbol">&lt;</span><a href="modules.html#nohandlercommand" class="tsd-signature-type" data-tsd-kind="Type alias">NoHandlerCommand</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">&quot;group&quot;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{ </span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionType.SUB_COMMAND</span><span class="tsd-signature-symbol"> }</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L36">command.ts:36</a></li>
 						</ul>
 					</aside>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
+				<section class="tsd-panel tsd-member tsd-kind-function">
 					<a name="command" class="tsd-anchor"></a>
 					<h3>command</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">command&lt;Nn&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-function">
+						<li class="tsd-signature tsd-kind-icon">command<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="classes/command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L302">command.ts:302</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L316">command.ts:316</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -568,22 +618,16 @@
 </code></pre>
 								</div>
 							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="classes/command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="classes/command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -597,7 +641,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/types/Interaction.ts#L103">types/Interaction.ts:103</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/types/Interaction.ts#L83">types/Interaction.ts:83</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -620,7 +664,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/types/Discord.ts#L122">types/Discord.ts:122</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/types/Discord.ts#L122">types/Discord.ts:122</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -652,7 +696,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/handler.ts#L126">handler.ts:126</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/handler.ts#L126">handler.ts:126</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -735,6 +779,12 @@
 						<a href="modules.html#gougeclientoptions" class="tsd-kind-icon">Gouge<wbr>Client<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#handledcommand" class="tsd-kind-icon">Handled<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="modules.html#nohandlercommand" class="tsd-kind-icon">No<wbr>Handler<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#rawhandler" class="tsd-kind-icon">Raw<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -743,7 +793,13 @@
 					<li class=" tsd-kind-type-alias">
 						<a href="modules.html#snowflake" class="tsd-kind-icon">Snowflake</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#subcommandgroupcommand" class="tsd-kind-icon">Sub<wbr>Command<wbr>Group<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="modules.html#subcommandscommand" class="tsd-kind-icon">Sub<wbr>Commands<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="modules.html#command" class="tsd-kind-icon">command</a>
 					</li>
 					<li class=" tsd-kind-function">

@@ -58,7 +58,7 @@
 					<a href="command.html">Command</a>
 				</li>
 			</ul>
-			<h1>Class Command&lt;N, T&gt;</h1>
+			<h1>Class Command&lt;T&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -69,10 +69,7 @@
 				<h3>Type parameters</h3>
 				<ul class="tsd-type-parameters">
 					<li>
-						<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-					</li>
-					<li>
-						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionRequirable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -82,12 +79,6 @@
 					<li>
 						<span class="target">Command</span>
 					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel">
-				<h3>Implements</h3>
-				<ul class="tsd-hierarchy">
-					<li><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
@@ -122,7 +113,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="command.html#role" class="tsd-kind-icon">role</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command.html#serialize" class="tsd-kind-icon">serialize</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="command.html#string" class="tsd-kind-icon">string</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="command.html#subcommand" class="tsd-kind-icon">subcommand</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="command.html#subcommand" class="tsd-kind-icon">subcommand</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter"><a href="command.html#user" class="tsd-kind-icon">user</a></li>
 							</ul>
 						</section>
@@ -135,34 +126,31 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Command&lt;N, T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">N</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Command&lt;T&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L35">command.ts:35</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L57">command.ts:57</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+									<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionRequirable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">N</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -174,9 +162,8 @@
 					<h3>description</h3>
 					<div class="tsd-signature tsd-kind-icon">description<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of CommandOptionSubCommand.description</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L32">command.ts:32</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L54">command.ts:54</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -186,18 +173,17 @@
 					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L33">command.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L55">command.ts:55</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
 					<a name="name" class="tsd-anchor"></a>
 					<h3>name</h3>
-					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">N</span></div>
+					<div class="tsd-signature tsd-kind-icon">name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of CommandOptionSubCommand.name</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L31">command.ts:31</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L53">command.ts:53</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -206,9 +192,8 @@
 					<h3>options</h3>
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
 					<aside class="tsd-sources">
-						<p>Implementation of CommandOptionSubCommand.options</p>
 						<ul>
-							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L34">command.ts:34</a></li>
+							<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L56">command.ts:56</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +210,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L245">command.ts:245</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L259">command.ts:259</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -241,13 +226,13 @@
 					<a name="boolean" class="tsd-anchor"></a>
 					<h3>boolean</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">boolean&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionBoolean</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">boolean&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionBoolean</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L109">command.ts:109</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L131">command.ts:131</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -259,25 +244,22 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionBoolean</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionBoolean</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -285,13 +267,13 @@
 					<a name="channel" class="tsd-anchor"></a>
 					<h3>channel</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">channel&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionChannel</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">channel&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionChannel</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L154">command.ts:154</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L176">command.ts:176</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,25 +285,22 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionChannel</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionChannel</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -329,13 +308,13 @@
 					<a name="equal" class="tsd-anchor"></a>
 					<h3>equal</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">equal<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+						<li class="tsd-signature tsd-kind-icon">equal<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L284">command.ts:284</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L298">command.ts:298</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -346,7 +325,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>command: <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>command: <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
@@ -357,13 +336,13 @@
 					<a name="group" class="tsd-anchor"></a>
 					<h3>group</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">group&lt;Nn, S&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>commands<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">group&lt;Nn&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, <span class="tsd-signature-symbol">...</span>commands<span class="tsd-signature-symbol">: </span><a href="../modules.html#handledcommand" class="tsd-signature-type" data-tsd-kind="Type alias">HandledCommand</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#subcommandgroupcommand" class="tsd-signature-type" data-tsd-kind="Type alias">SubCommandGroupCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L214">command.ts:214</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L231">command.ts:231</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -377,9 +356,6 @@
 								<li>
 									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
 								</li>
-								<li>
-									<h4>S<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
@@ -390,10 +366,10 @@
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>commands: <span class="tsd-signature-type">S</span></h5>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>commands: <a href="../modules.html#handledcommand" class="tsd-signature-type" data-tsd-kind="Type alias">HandledCommand</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">S</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules.html#subcommandgroupcommand" class="tsd-signature-type" data-tsd-kind="Type alias">SubCommandGroupCommand</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -401,13 +377,13 @@
 					<a name="handler" class="tsd-anchor"></a>
 					<h3>handler</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">handler<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../modules.html#commandhandler" class="tsd-signature-type" data-tsd-kind="Type alias">CommandHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">handler<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../modules.html#commandhandler" class="tsd-signature-type" data-tsd-kind="Type alias">CommandHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#nohandlercommand" class="tsd-signature-type" data-tsd-kind="Type alias">NoHandlerCommand</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L232">command.ts:232</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L246">command.ts:246</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -421,7 +397,7 @@
 									<h5>handler: <a href="../modules.html#commandhandler" class="tsd-signature-type" data-tsd-kind="Type alias">CommandHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules.html#nohandlercommand" class="tsd-signature-type" data-tsd-kind="Type alias">NoHandlerCommand</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -429,13 +405,13 @@
 					<a name="integer" class="tsd-anchor"></a>
 					<h3>integer</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">integer&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span>, choices<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionInteger</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">integer&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span>, choices<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionInteger</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L85">command.ts:85</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L107">command.ts:107</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -447,28 +423,25 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> choices: <span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionInteger</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionInteger</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -476,13 +449,13 @@
 					<a name="role" class="tsd-anchor"></a>
 					<h3>role</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">role&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionRole</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">role&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionRole</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L176">command.ts:176</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L198">command.ts:198</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -494,25 +467,22 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionRole</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionRole</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -526,7 +496,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L237">command.ts:237</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L251">command.ts:251</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
@@ -537,13 +507,13 @@
 					<a name="string" class="tsd-anchor"></a>
 					<h3>string</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">string&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span>, choices<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionString</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">string&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span>, choices<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionString</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L53">command.ts:53</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L75">command.ts:75</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -555,42 +525,39 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 								<li>
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> choices: <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">OptionChoice</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionString</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionString</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
 					<a name="subcommand" class="tsd-anchor"></a>
 					<h3>subcommand</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">subcommand&lt;Nn, O&gt;<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+						<li class="tsd-signature tsd-kind-icon">subcommand<span class="tsd-signature-symbol">(</span>command<span class="tsd-signature-symbol">: </span><a href="../modules.html#handledcommand" class="tsd-signature-type" data-tsd-kind="Type alias">HandledCommand</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules.html#subcommandscommand" class="tsd-signature-type" data-tsd-kind="Type alias">SubCommandsCommand</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L196">command.ts:196</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L218">command.ts:218</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -599,22 +566,13 @@
 									functions.</p>
 								</div>
 							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>O<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">CommandOption</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
-								</li>
-							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>command: <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>command: <a href="../modules.html#handledcommand" class="tsd-signature-type" data-tsd-kind="Type alias">HandledCommand</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionSubCommand</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">O</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules.html#subcommandscommand" class="tsd-signature-type" data-tsd-kind="Type alias">SubCommandsCommand</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -622,13 +580,13 @@
 					<a name="user" class="tsd-anchor"></a>
 					<h3>user</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">user&lt;Nn, R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Nn</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionUser</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">user&lt;R&gt;<span class="tsd-signature-symbol">(</span>name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, description<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, required<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionUser</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/056b6ba/src/command.ts#L132">command.ts:132</a></li>
+									<li>Defined in <a href="https://github.com/mcpar-land/gouge/blob/ea1d615/src/command.ts#L154">command.ts:154</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -641,25 +599,22 @@
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
 							<ul class="tsd-type-parameters">
 								<li>
-									<h4>Nn<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></h4>
-								</li>
-								<li>
-									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">boolean</span></h4>
+									<h4>R<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span> = <span class="tsd-signature-type">false</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>name: <span class="tsd-signature-type">Nn</span></h5>
+									<h5>name: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
 									<h5>description: <span class="tsd-signature-type">string</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> required: <span class="tsd-signature-type">R</span></h5>
+									<h5>required: <span class="tsd-signature-type">R</span><span class="tsd-signature-symbol"> = ...</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionUser</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Nn</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="command.html" class="tsd-signature-type" data-tsd-kind="Class">Command</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-symbol">...</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">CommandOptionUser</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">R</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -731,7 +686,7 @@
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
 								<a href="command.html#string" class="tsd-kind-icon">string</a>
 							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
+							<li class=" tsd-kind-method tsd-parent-kind-class">
 								<a href="command.html#subcommand" class="tsd-kind-icon">subcommand</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class tsd-has-type-parameter">
@@ -787,6 +742,12 @@
 						<a href="../modules.html#gougeclientoptions" class="tsd-kind-icon">Gouge<wbr>Client<wbr>Options</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#handledcommand" class="tsd-kind-icon">Handled<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../modules.html#nohandlercommand" class="tsd-kind-icon">No<wbr>Handler<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
 						<a href="../modules.html#rawhandler" class="tsd-kind-icon">Raw<wbr>Handler</a>
 					</li>
 					<li class=" tsd-kind-type-alias">
@@ -795,7 +756,13 @@
 					<li class=" tsd-kind-type-alias">
 						<a href="../modules.html#snowflake" class="tsd-kind-icon">Snowflake</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter">
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#subcommandgroupcommand" class="tsd-kind-icon">Sub<wbr>Command<wbr>Group<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-type-alias">
+						<a href="../modules.html#subcommandscommand" class="tsd-kind-icon">Sub<wbr>Commands<wbr>Command</a>
+					</li>
+					<li class=" tsd-kind-function">
 						<a href="../modules.html#command" class="tsd-kind-icon">command</a>
 					</li>
 					<li class=" tsd-kind-function">
