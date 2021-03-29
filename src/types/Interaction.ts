@@ -59,8 +59,8 @@ export interface InteractionDataOptionOptions<
 }
 
 type TYPE_MAP = {
-	[CommandOptionType.SUB_COMMAND]: unknown
-	[CommandOptionType.SUB_COMMAND_GROUP]: unknown
+	[CommandOptionType.SUB_COMMAND]: never
+	[CommandOptionType.SUB_COMMAND_GROUP]: never
 	[CommandOptionType.STRING]: string
 	[CommandOptionType.INTEGER]: number
 	[CommandOptionType.BOOLEAN]: boolean
@@ -69,35 +69,15 @@ type TYPE_MAP = {
 	[CommandOptionType.ROLE]: IRole
 }
 
-type ConvertOptionToInteractionArg<
-	T extends CommandOption<any>
-> = T extends CommandOptionSubCommandGroup<infer N, infer O>
-	?
-			| InteractionDataOptionOptions<
-					N,
-					ConvertOptionArrayToInteractionArgArray<O>
-			  >
-			| undefined
-	: T extends CommandOptionSubCommand<infer N, infer O>
-	?
-			| InteractionDataOptionOptions<
-					N,
-					ConvertOptionArrayToInteractionArgArray<O>
-			  >
-			| undefined
-	: T extends CommandOptionRequirable<infer N, infer R>
-	? R extends true
-		? TYPE_MAP[T['type']]
-		: TYPE_MAP[T['type']] | undefined
-	: unknown
-
 /** @internal */
 export type ConvertOptionArrayToInteractionArgArray<
-	A extends CommandOption<any>[]
+	A extends CommandOptionRequirable<boolean>[]
 > = {
-	[K in keyof A]: A[K] extends CommandOption<infer _>
-		? ConvertOptionToInteractionArg<A[K]>
-		: unknown
+	[K in keyof A]: A[K] extends CommandOptionRequirable<infer R>
+		? R extends true
+			? TYPE_MAP[A[K]['type']]
+			: TYPE_MAP[A[K]['type']] | undefined
+		: never
 }
 
 export function interactionCommandNames(

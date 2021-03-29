@@ -1,6 +1,6 @@
 import { IUser, IChannel, IRole, IMember } from '.'
 import { GougeClient } from './client'
-import { CommandOption } from './command-types'
+import { CommandOption, CommandOptionRequirable } from './command-types'
 import {
 	ConvertOptionArrayToInteractionArgArray,
 	InteractionRaw,
@@ -28,7 +28,7 @@ import { Response } from './types/Response'
  * 	});
  * ```
  */
-export type CommandHandler<T extends CommandOption<any>[]> = (
+export type CommandHandler<T extends CommandOptionRequirable<boolean>[]> = (
 	client: GougeClient,
 	respond: ResponseFunction,
 	args: ConvertOptionArrayToInteractionArgArray<T>,

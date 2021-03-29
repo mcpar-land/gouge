@@ -12,6 +12,7 @@ import {
 	CommandOptionBoolean,
 	CommandOptionChannel,
 	CommandOptionInteger,
+	CommandOptionRequirable,
 	CommandOptionRole,
 	CommandOptionString,
 	CommandOptionSubCommand,
@@ -23,18 +24,39 @@ import {
 import { CommandHandler, ResponseFunction } from './handler'
 import _ from 'lodash'
 import { Response } from './types/Response'
+import { ConvertOptionArrayToInteractionArgArray } from '.'
 
-export class Command<N extends string, T extends CommandOption<any>[]>
-	implements CommandOptionSubCommand<N, T> {
-	/** @internal */
-	type: CommandOptionType.SUB_COMMAND = CommandOptionType.SUB_COMMAND
-	name: N
+export type HandledCommand = NoHandlerCommand<CommandOption[]>
+
+export type NoHandlerCommand<T extends CommandOption[]> = Omit<
+	Command<T>,
+	'handler' | 'boolean' | 'string' | 'integer' | 'user' | 'role' | 'channel'
+>
+
+export type SubCommandsCommand = Omit<
+	NoHandlerCommand<CommandOptionSubCommand[]>,
+	'group'
+> & {
+	type: CommandOptionType.SUB_COMMAND
+}
+
+export type SubCommandGroupCommand = Omit<
+	NoHandlerCommand<CommandOptionSubCommandGroup[]>,
+	'subcommand'
+> & {
+	type: CommandOptionType.SUB_COMMAND_GROUP
+}
+
+export class Command<T extends CommandOptionRequirable<boolean>[]> {
+	/*implements CommandOptionSubCommand<N, T>*/ /** @internal */
+	type: CommandOptionType = CommandOptionType.SUB_COMMAND
+	name: string
 	description: string
 	id: string
 	options: T
 	private handlerFxn?: CommandHandler<T>
 
-	constructor(name: N, description: string) {
+	constructor(name: string, description: string) {
 		this.name = name
 		this.description = description
 		this.options = ([] as unknown) as T
@@ -50,12 +72,12 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param choices
 	 * @returns
 	 */
-	string<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	string<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R,
+		required: R = false as R,
 		choices?: (string | OptionChoice<string>)[]
-	): Command<N, CommandOptionArrayString<Nn, T, R>> {
+	): Command<CommandOptionArrayString<T, R>> {
 		let c = choices?.map((choice) => {
 			if (typeof choice === 'string') {
 				return { name: choice, value: choice }
@@ -69,8 +91,8 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 			description,
 			choices: c,
 			required,
-		} as CommandOptionString<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayString<Nn, T, R>>
+		} as CommandOptionString<R>)
+		return (this as unknown) as Command<CommandOptionArrayString<T, R>>
 	}
 
 	/**
@@ -82,20 +104,20 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param choices
 	 * @returns
 	 */
-	integer<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	integer<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R,
+		required: R = false as R,
 		choices?: OptionChoice<number>[]
-	): Command<N, CommandOptionArrayInteger<Nn, T, R>> {
+	): Command<CommandOptionArrayInteger<T, R>> {
 		this.options.push({
 			type: CommandOptionType.INTEGER,
 			name,
 			description,
 			choices,
-			required,
-		} as CommandOptionInteger<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayInteger<Nn, T, R>>
+			required: required === undefined ? false : required,
+		} as CommandOptionInteger<R>)
+		return (this as unknown) as Command<CommandOptionArrayInteger<T, R>>
 	}
 
 	/**
@@ -106,18 +128,18 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param required
 	 * @returns
 	 */
-	boolean<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	boolean<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R
-	): Command<N, CommandOptionArrayBoolean<Nn, T, R>> {
+		required: R = false as R
+	): Command<CommandOptionArrayBoolean<T, R>> {
 		this.options.push({
 			type: CommandOptionType.BOOLEAN,
 			name,
 			description,
-			required,
-		} as CommandOptionBoolean<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayBoolean<Nn, T, R>>
+			required: required === undefined ? false : required,
+		} as CommandOptionBoolean<R>)
+		return (this as unknown) as Command<CommandOptionArrayBoolean<T, R>>
 	}
 
 	/**
@@ -129,18 +151,18 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param required
 	 * @returns
 	 */
-	user<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	user<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R
-	): Command<N, CommandOptionArrayUser<Nn, T, R>> {
+		required: R = false as R
+	): Command<CommandOptionArrayUser<T, R>> {
 		this.options.push({
 			type: CommandOptionType.USER,
 			name,
 			description,
-			required,
-		} as CommandOptionUser<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayUser<Nn, T, R>>
+			required: required === undefined ? false : required,
+		} as CommandOptionUser<R>)
+		return (this as unknown) as Command<CommandOptionArrayUser<T, R>>
 	}
 
 	/**
@@ -151,18 +173,18 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param required
 	 * @returns
 	 */
-	channel<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	channel<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R
-	): Command<N, CommandOptionArrayChannel<Nn, T, R>> {
+		required: R = false as R
+	): Command<CommandOptionArrayChannel<T, R>> {
 		this.options.push({
 			type: CommandOptionType.CHANNEL,
 			name,
 			description,
-			required,
-		} as CommandOptionChannel<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayChannel<Nn, T, R>>
+			required: required === undefined ? false : required,
+		} as CommandOptionChannel<R>)
+		return (this as unknown) as Command<CommandOptionArrayChannel<T, R>>
 	}
 
 	/**
@@ -173,18 +195,18 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param required
 	 * @returns
 	 */
-	role<Nn extends string, R extends true | false | undefined>(
-		name: Nn,
+	role<R extends boolean = false>(
+		name: string,
 		description: string,
-		required?: R
-	): Command<N, CommandOptionArrayRole<Nn, T, R>> {
+		required: R = false as R
+	): Command<CommandOptionArrayRole<T, R>> {
 		this.options.push({
 			type: CommandOptionType.ROLE,
 			name,
 			description,
-			required,
-		} as CommandOptionRole<Nn, R>)
-		return (this as unknown) as Command<N, CommandOptionArrayRole<Nn, T, R>>
+			required: required === undefined ? false : required,
+		} as CommandOptionRole<R>)
+		return (this as unknown) as Command<CommandOptionArrayRole<T, R>>
 	}
 
 	/**
@@ -193,14 +215,9 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param command
 	 * @returns
 	 */
-	subcommand<Nn extends string, O extends CommandOption<any>[]>(
-		command: Command<Nn, O>
-	): Command<N, CommandOptionArraySubCommand<Nn, O, T>> {
+	subcommand(command: HandledCommand): SubCommandsCommand {
 		this.options.push(command)
-		return (this as unknown) as Command<
-			N,
-			CommandOptionArraySubCommand<Nn, O, T>
-		>
+		return (this as unknown) as SubCommandsCommand
 	}
 
 	/**
@@ -211,27 +228,24 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param commands
 	 * @returns
 	 */
-	group<Nn extends string, S extends CommandOptionSubCommand<any, any>[]>(
+	group<Nn extends string>(
 		name: Nn,
 		description: string,
-		...commands: S
-	): Command<N, CommandOptionArraySubCommandGroup<Nn, S, T>> {
+		...commands: HandledCommand[]
+	): SubCommandGroupCommand {
 		this.options.push({
 			type: CommandOptionType.SUB_COMMAND_GROUP,
 			name,
 			description,
 			options: commands,
-		} as CommandOptionSubCommandGroup<Nn, S>)
-		return (this as unknown) as Command<
-			N,
-			CommandOptionArraySubCommandGroup<Nn, S, T>
-		>
+		} as CommandOptionSubCommandGroup)
+		return (this as unknown) as SubCommandGroupCommand
 	}
 
 	/** Write the handler for a command. */
-	handler(handler: CommandHandler<T>): Command<N, T> {
-		this.handlerFxn = handler
-		return this
+	handler(handler: CommandHandler<T>): NoHandlerCommand<T> {
+		this.handlerFxn = handler as any
+		return this as NoHandlerCommand<T>
 	}
 
 	serialize(): object {
@@ -281,7 +295,7 @@ export class Command<N extends string, T extends CommandOption<any>[]>
 	 * @param command
 	 * @returns
 	 */
-	equal(command: Command<any, any>): boolean {
+	equal(command: Command<any>): boolean {
 		return (
 			this.name == command.name &&
 			this.description == command.description &&
@@ -299,9 +313,6 @@ export class Command<N extends string, T extends CommandOption<any>[]>
  * @param description
  * @returns
  */
-export function command<Nn extends string>(
-	name: Nn,
-	description: string
-): Command<Nn, []> {
+export function command(name: string, description: string): Command<[]> {
 	return new Command(name, description)
 }
