@@ -28,14 +28,10 @@ import { Response } from './types/Response'
  * 	});
  * ```
  */
-export type CommandHandler<
-	T extends ConvertOptionArrayToInteractionArgArray<
-		CommandOptionRequirable<any>[]
-	>
-> = (
+export type CommandHandler<T extends CommandOptionRequirable<boolean>[]> = (
 	client: GougeClient,
 	respond: ResponseFunction,
-	args: T,
+	args: ConvertOptionArrayToInteractionArgArray<T>,
 	props: {
 		id: string
 		guildId: string

@@ -54,9 +54,7 @@ export class Command<T extends CommandOptionRequirable<boolean>[]> {
 	description: string
 	id: string
 	options: T
-	private handlerFxn?: CommandHandler<
-		ConvertOptionArrayToInteractionArgArray<T>
-	>
+	private handlerFxn?: CommandHandler<T>
 
 	constructor(name: string, description: string) {
 		this.name = name
@@ -245,9 +243,7 @@ export class Command<T extends CommandOptionRequirable<boolean>[]> {
 	}
 
 	/** Write the handler for a command. */
-	handler(
-		handler: CommandHandler<ConvertOptionArrayToInteractionArgArray<T>>
-	): NoHandlerCommand<T> {
+	handler(handler: CommandHandler<T>): NoHandlerCommand<T> {
 		this.handlerFxn = handler as any
 		return this as NoHandlerCommand<T>
 	}

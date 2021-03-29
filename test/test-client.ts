@@ -1,3 +1,4 @@
+'use strict'
 import { GougeClient } from '../src/client'
 import { command } from '../src/command'
 import dotenv from 'dotenv'

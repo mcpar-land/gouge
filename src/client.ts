@@ -111,12 +111,12 @@ export class GougeClient {
 			if (!isVerified) {
 				return res.status(401).end('invalid request signature')
 			}
-			next()
+			return next()
 		})
 
 		this.app.post('/', async (req, res) => {
 			if (req.body.type == 1) {
-				return res.status(200).send({ type: 1 })
+				res.status(200).send({ type: 1 })
 			}
 
 			try {
